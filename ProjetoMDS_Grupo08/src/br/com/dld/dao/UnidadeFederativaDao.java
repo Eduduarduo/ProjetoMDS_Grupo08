@@ -23,7 +23,8 @@ public class UnidadeFederativaDao extends Dao{
 		
 		try {
 			Connection conexao = this.gerarConexao();
-			String query = "select * from UnidadeFederativa where ano=" + ano + "and uf=" + uf;
+			String query = "select * from dldufabsoluto where regiao = '" + uf + "'and ano ="+ 2006
+					+" union select * from dldufrelativo where regiao = '"+ uf +"' and ano ="+ 2006;
 
 			Statement stm = (Statement) conexao.createStatement();
 			ResultSet rs = (ResultSet) stm.executeQuery(query);
@@ -33,10 +34,10 @@ public class UnidadeFederativaDao extends Dao{
 			while(rs.next()){
 				
 				UnidadeFederativa unidadeFederativa = new UnidadeFederativa();
-				unidadeFederativa.setId(rs.getInt("id"));
 				unidadeFederativa.setOpcao(rs.getString("opcao"));
+				System.out.println("Opcao: " + unidadeFederativa.getOpcao());
 				unidadeFederativa.setValor(rs.getInt("valor"));
-				unidadeFederativa.setTipo(rs.getString("tipo"));
+				System.out.println("Valor: " + unidadeFederativa.getValor());
 				
 				ufs.add(unidadeFederativa);	
 			}

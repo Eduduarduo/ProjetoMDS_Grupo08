@@ -22,7 +22,7 @@ public class RegiaoMetropolitanaDao extends Dao{
 		
 		try {
 			Connection conexao = this.gerarConexao();
-			String query = "select * from RegiaoMetropolitana where ano=" + ano + "and regiao=" + regiao;
+			String query = "select * from dldregiaoabsoluto where regiao = '"+ regiao +"' and ano = "+2006+" union select * from dldregiaorelativo where regiao = '"+ regiao +"' and ano = "+2006;
 
 			Statement stm = (Statement) conexao.createStatement();
 			ResultSet rs = (ResultSet) stm.executeQuery(query);
@@ -32,10 +32,10 @@ public class RegiaoMetropolitanaDao extends Dao{
 			while(rs.next()){
 				
 				RegiaoMetropolitana regiaoMetropolitana = new RegiaoMetropolitana();
-				regiaoMetropolitana.setId(rs.getInt("id"));
 				regiaoMetropolitana.setOpcao(rs.getString("opcao"));
+				System.out.println("Opcao: " + regiaoMetropolitana.getOpcao());
 				regiaoMetropolitana.setValor(rs.getInt("valor"));
-				regiaoMetropolitana.setTipo(rs.getString("tipo"));
+				System.out.println("Valor: "+ regiaoMetropolitana.getValor());
 				
 				regioesMetropolitana.add(regiaoMetropolitana);	
 			}

@@ -22,7 +22,7 @@ public class BrasilDao extends Dao{
 		
 		try {
 			Connection conexao = this.gerarConexao();
-			String query = "select * from Brasil where ano=" + ano;
+			String query = "select * from dldbrasilabsoluto where ano =" +1981+" union select * from dldbrasilrelativo where ano = "+1981;
 
 			Statement stm = (Statement) conexao.createStatement();
 			ResultSet rs = (ResultSet) stm.executeQuery(query);
@@ -32,10 +32,10 @@ public class BrasilDao extends Dao{
 				
 				Brasil br = new Brasil();
 				br.setOpcao(rs.getString("opcao"));
+				System.out.println("Opcao: " + br.getOpcao());
 				br.setValor(rs.getInt("valor"));
-				br.setTipo(rs.getString("tipo"));
-				br.setId(rs.getInt("id"));
-				
+				System.out.println("Valor: "+ br.getValor());
+
 				brasil.add(br);	
 			}
 			

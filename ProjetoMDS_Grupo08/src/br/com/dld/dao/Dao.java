@@ -8,7 +8,7 @@ import java.sql.SQLException;
 	public class Dao implements Conexao{
 
 		protected static final String SQL_DRIVER = "com.mysql.jdbc.Driver";
-		protected static final String SQL_URL = "jdbc:mysql://127.0.0.1/dld";
+		protected static final String SQL_URL = "jdbc:mysql://127.0.0.1/dld3";
 		protected static final String SQL_USER = "root";
 		protected static final String SQL_PASS = "root";
 		protected Connection conn = null;
