@@ -1,8 +1,15 @@
 package br.com.dld.dao;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.ResultSet;
-import com.mysql.jdbc.Statement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.dld.model.UnidadeFederativa;
+
+
 
 public class UnidadeFederativaDao extends Dao{
 	
@@ -25,13 +32,13 @@ public class UnidadeFederativaDao extends Dao{
 			//varrer toda a tabela e popular o bean
 			while(rs.next()){
 				
-				UnidadeFederativa uf = new UnidadeFederativa();
-				uf.setID(rs.getInt("id"));
-				uf.setOpcao(rs.getString("opcao"));
-				uf.setValor(rs.getInt("valor"));
-				uf.setTipo(rs.getString("tipo"));
+				UnidadeFederativa unidadeFederativa = new UnidadeFederativa();
+				unidadeFederativa.setId(rs.getInt("id"));
+				unidadeFederativa.setOpcao(rs.getString("opcao"));
+				unidadeFederativa.setValor(rs.getInt("valor"));
+				unidadeFederativa.setTipo(rs.getString("tipo"));
 				
-				ufs.add(uf);	
+				ufs.add(unidadeFederativa);	
 			}
 			
 			stm.close();

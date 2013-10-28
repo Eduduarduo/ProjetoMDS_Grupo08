@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.dld.model.RegiaoMetropolitana;
+
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 
@@ -30,7 +32,7 @@ public class RegiaoMetropolitanaDao extends Dao{
 			while(rs.next()){
 				
 				RegiaoMetropolitana regiaoMetropolitana = new RegiaoMetropolitana();
-				regiaoMetropolitana.setID(rs.getInt("id"));
+				regiaoMetropolitana.setId(rs.getInt("id"));
 				regiaoMetropolitana.setOpcao(rs.getString("opcao"));
 				regiaoMetropolitana.setValor(rs.getInt("valor"));
 				regiaoMetropolitana.setTipo(rs.getString("tipo"));
@@ -47,8 +49,5 @@ public class RegiaoMetropolitanaDao extends Dao{
 		}
 		return regioesMetropolitana;
 	}
-		
-	
-	
-	}
+
 }

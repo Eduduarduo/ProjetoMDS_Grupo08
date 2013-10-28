@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.RegiaoMetropolitana;
 
-import Model.Brasil;
+
+import br.com.dld.model.Brasil;
 
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
@@ -32,12 +32,12 @@ public class BrasilDao extends Dao{
 			while(rs.next()){
 				
 				Brasil br = new Brasil();
-				br.setID(rs.getInt("id"));
 				br.setOpcao(rs.getString("opcao"));
 				br.setValor(rs.getInt("valor"));
 				br.setTipo(rs.getString("tipo"));
+				br.setId(rs.getInt("id"));
 				
-				brasil.add(brasil);	
+				brasil.add(br);	
 			}
 			
 			stm.close();
