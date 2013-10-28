@@ -1,4 +1,4 @@
-package dao;
+package br.com.dld.dao;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;

@@ -1,4 +1,4 @@
-package dao;
+package br.com.dld.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
