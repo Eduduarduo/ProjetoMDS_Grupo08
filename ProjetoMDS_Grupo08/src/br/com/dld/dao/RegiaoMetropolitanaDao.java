@@ -1,14 +1,14 @@
 package br.com.dld.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.dld.model.RegiaoMetropolitana;
 
-import com.mysql.jdbc.ResultSet;
-import com.mysql.jdbc.Statement;
 
 public class RegiaoMetropolitanaDao extends Dao{
 	
