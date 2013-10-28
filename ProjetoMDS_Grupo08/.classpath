@@ -11,7 +11,5 @@
 	<classpathentry kind="lib" path="D:/Desktop/Dropbox/Projeto MDS/Bibliotecas/easymock-3.2.zip"/>
 	<classpathentry kind="lib" path="D:/Desktop/Dropbox/Projeto MDS/Bibliotecas/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="lib" path="D:/Desktop/Dropbox/Projeto MDS/Bibliotecas/mysql-connector-java-5.0.8-bin.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/ruyther/Downloads/easymock-3.2"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
