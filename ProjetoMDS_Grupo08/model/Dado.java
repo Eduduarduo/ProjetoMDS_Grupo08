@@ -1,41 +1,36 @@
 package br.com.dld.model;
 
 public class Dado {
+	
 	//Atributos
-	int id;
-	int valor;
+	String regiao;
 	String opcao;
 	String tipo;
+	int ano;
+	int valor;
 	
 	//Construtor vazio
 	public Dado(){
 		
 	}
 	
-	public Dado(int id, int valor, String opcao, String tipo){
-		this.id = id;
-		this.valor = valor;
+	public Dado(String regiao, String opcao, String tipo, int ano, int valor){
+		this.regiao = regiao;
 		this.opcao = opcao;
 		this.tipo = tipo;
-	}
-	
-	//Métodos de acesso
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getValor() {
-		return valor;
-	}
-
-	public void setValor(int valor) {
+		this.ano = ano;
 		this.valor = valor;
 	}
+	
+	//Metodos de acesso gets e sets
+	public String getRegiao() {
+		return regiao;
+	}
 
+	public void setRegiao(String regiao) {
+		this.regiao = regiao;
+	}
+	
 	public String getOpcao() {
 		return opcao;
 	}
@@ -52,4 +47,20 @@ public class Dado {
 		this.tipo = tipo;
 	}
 	
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+	
+	public int getValor() {
+		return valor;
+	}
+
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
+
 }

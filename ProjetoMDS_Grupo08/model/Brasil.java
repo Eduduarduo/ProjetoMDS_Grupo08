@@ -8,8 +8,8 @@ public class Brasil extends Dado {
 	}
 	
 	//Construtor cheio
-	public Brasil(int idBrasil, int valorBrasil, String opcaoBrasil, String tipoBrasil){
-		super(idBrasil, valorBrasil, opcaoBrasil, tipoBrasil);
+	public Brasil(String regiaoBrasil, String opcaoBrasil,String tipoBrasil, int anoBrasil, int valorBrasil){
+		super(regiaoBrasil, opcaoBrasil, tipoBrasil, anoBrasil, valorBrasil);
 	}
 
 }
