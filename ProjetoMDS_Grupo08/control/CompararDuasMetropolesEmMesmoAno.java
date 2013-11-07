@@ -1,4 +1,4 @@
-package br.com.dld.control;
+package control;
 
 public class CompararDuasMetropolesEmMesmoAno {
 

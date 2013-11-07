@@ -1,4 +1,4 @@
-package br.com.dld.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.util.List;
 
 
 
-import br.com.dld.model.Brasil;
+import model.Brasil;
 
 public class BrasilDao extends Dao{
 

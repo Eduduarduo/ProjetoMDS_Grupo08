@@ -1,4 +1,4 @@
-package br.com.dld.model;
+package model;
 
 public class Dado {
 	

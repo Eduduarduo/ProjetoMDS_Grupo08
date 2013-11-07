@@ -1,4 +1,4 @@
-package br.com.dld.dao;
+package dao;
 
 public class TesteBrasilDao {
 
@@ -11,10 +11,10 @@ public class TesteBrasilDao {
 		BrasilDao brasil = new BrasilDao();
 		brasil.buscaBrasil(1981);
 		
-		System.out.println("------------------Dados referente as UFS -----------------------");
+		//System.out.println("------------------Dados referente as UFS -----------------------");
 		
-		UnidadeFederativaDao uf = new UnidadeFederativaDao();
-		uf.buscaUF("Rondonia", 2009);
+		//UnidadeFederativaDao uf = new UnidadeFederativaDao();
+		//uf.buscaUF("Rondonia", 2009);
 		
 		System.out.println("-----------------Dados referentes as regioes metropolitanas--------------------------");
 		

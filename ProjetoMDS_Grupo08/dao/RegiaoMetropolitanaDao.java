@@ -1,4 +1,4 @@
-package br.com.dld.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.dld.model.RegiaoMetropolitana;
+import model.RegiaoMetropolitana;
 
 
 public class RegiaoMetropolitanaDao extends Dao{
