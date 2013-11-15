@@ -18,16 +18,17 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 	}
 
 	// Metodo que busca todos os valores Absolutos de Brasil
-	public List<RegiaoMetropolitana> buscaRegiaoMetropolitanaAbsolutoPorAno(int ano) throws SQLException {
+	public List<RegiaoMetropolitana> buscaRegiaoMetropolitanaAbsoluto(String regiao, int ano) throws SQLException {
 		//Instancia que será de retorno
 		List<RegiaoMetropolitana> regiaoMetropolitana = new ArrayList<RegiaoMetropolitana>();
 		// Criando uma conexao com a Classe ConnectionFactory
 		this.conexao = new ConnectionFactory().getConnection();
 		//Comando query 
-		String query = "select * from dldlregiaoabsoluto where ano = ? ";
+		String query = "select * from dldlregiaoabsoluto where ano = ? and regiao = ?";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		//Parametro de busca 
 		stm.setInt(1, ano);
+		stm.setString(2, regiao);
 		ResultSet rs = stm.executeQuery();
 
 		while (rs.next()) {
@@ -47,14 +48,15 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		return regiaoMetropolitana;
 	}
 	
-	public List<RegiaoMetropolitana> buscaRegiaoMetropolitanaRelativoPorAno(int ano) throws SQLException {
+	public List<RegiaoMetropolitana> buscaRegiaoMetropolitanaRelativo(String regiao, int ano) throws SQLException {
 		
 		List<RegiaoMetropolitana> regiaoMetropolitana = new ArrayList<RegiaoMetropolitana>();
 		// Criando uma conexao com a Classe ConnectionFactory
 		this.conexao = new ConnectionFactory().getConnection();
-		String query = "select * from dldregiaorelativo where ano = ? ";
+		String query = "select * from dldregiaorelativo where ano = ? and regiao = ?";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		stm.setInt(1, ano);
+		stm.setString(2, regiao);
 		ResultSet rs = stm.executeQuery();
 
 		while (rs.next()) {
@@ -72,7 +74,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		return regiaoMetropolitana;
 	}
 	
-public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
+	public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
 	
 	List<Integer> datasRM = new ArrayList<Integer>();
 	this.conexao = new ConnectionFactory().getConnection();
@@ -94,7 +96,7 @@ public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
 	
 }	
 
-public List<Integer>  getDatasComparaçãoRegiaoMetropolitana(int ano) throws SQLException{
+	public List<Integer>  getDatasComparacaoRegiaoMetropolitana(int ano) throws SQLException{
 	
 	List<Integer> datasRM = new ArrayList<Integer>();
 	this.conexao = new ConnectionFactory().getConnection();
