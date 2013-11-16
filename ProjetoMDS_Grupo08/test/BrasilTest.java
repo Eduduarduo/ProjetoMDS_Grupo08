@@ -64,22 +64,34 @@ public class BrasilTest {
 
 	@Test
 	public void testIdErrado(){
-		
+		Brasil dados = new Brasil();
+		dados.setAno(1234);
+		assertNotEquals(dados.getAno(), 1234.00);
+		assertNotNull(dados.getAno());
 	}
 	
 	@Test
 	public void testValorErrado(){
-		
+		Brasil dados = new Brasil();
+		dados.setValor(4321);
+		assertNotEquals(dados.getValor(), 4321.00);
+		assertNotNull(dados.getValor());
 	}
 	
 	@Test
 	public void testOpcaoErrado(){
-		
+		Brasil dados = new Brasil();
+		dados.setOpcao("Opcional");
+		assertNotEquals(dados.getOpcao(),"Lanoicpo");
+		assertNotNull(dados.getOpcao());
 	}
 	
 	@Test
 	public void testTipoErrado(){
-		
+		Brasil dados = new Brasil();
+		dados.setTipo("Tipacional");
+		assertNotEquals(dados.getTipo(),"Lanoicapit");
+		assertNotNull(dados.getTipo());
 	}
 
 }
