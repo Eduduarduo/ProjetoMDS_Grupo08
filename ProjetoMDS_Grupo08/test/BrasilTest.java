@@ -44,7 +44,12 @@ public class BrasilTest {
 	
 	@Test
 	public void testOpcao(){
-		
+		Brasil dados = new Brasil();
+		assertNull(dados.getOpcao());
+		dados.setOpcao("Opcional");
+		assertEquals("Opcional", dados.getOpcao());
+		dados.setOpcao("");
+		assertEquals("", dados.getOpcao());
 	}
 	
 	@Test
