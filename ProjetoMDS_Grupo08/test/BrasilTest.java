@@ -32,7 +32,14 @@ public class BrasilTest {
 	
 	@Test
 	public void testValor(){
-		
+		Brasil dados = new Brasil();
+		assertEquals(0, dados.getValor());
+		dados.setValor(4321);
+		assertEquals(4321, dados.getValor());
+		dados.setValor(0);
+		assertEquals(0, dados.getValor());
+		dados.setValor(555555555);
+		assertEquals(555555555,dados.getValor());
 	}
 	
 	@Test
