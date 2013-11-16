@@ -20,7 +20,14 @@ public class BrasilTest {
 
 	@Test
 	public void testAno(){
-		
+	    Brasil dados = new Brasil();
+		assertEquals(0, dados.getAno());
+		dados.setAno(1234);
+		assertEquals(1234, dados.getAno());
+		dados.setAno(0);
+		assertEquals(0, dados.getAno());
+		dados.setAno(555555555);
+		assertEquals(555555555, dados.getAno());		
 	}
 	
 	@Test
