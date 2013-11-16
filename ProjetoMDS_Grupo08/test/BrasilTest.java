@@ -54,7 +54,12 @@ public class BrasilTest {
 	
 	@Test
 	public void testTipo(){
-		
+		Brasil dados = new Brasil();
+		assertNull(dados.getTipo());
+		dados.setTipo("Tipacional");
+		assertEquals("Tipacional", dados.getTipo());
+		dados.setTipo("");
+		assertEquals("", dados.getTipo());
 	}
 
 	@Test
