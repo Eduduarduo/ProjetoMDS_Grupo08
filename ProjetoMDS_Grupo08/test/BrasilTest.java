@@ -17,7 +17,8 @@ public class BrasilTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
+	
 	@Test
 	public void testAno(){
 	    Brasil dados = new Brasil();
@@ -43,6 +44,16 @@ public class BrasilTest {
 	}
 	
 	@Test
+	public void testRegiao(){
+		Brasil dados = new Brasil();
+		assertNull(dados.getRegiao());
+		dados.setTipo("Tipacional");
+		assertEquals("Tipacional", dados.getRegiao());
+		dados.setTipo("");
+		assertEquals("", dados.getRegiao());
+	}
+	
+	@Test
 	public void testOpcao(){
 		Brasil dados = new Brasil();
 		assertNull(dados.getOpcao());
@@ -63,7 +74,7 @@ public class BrasilTest {
 	}
 
 	@Test
-	public void testIdErrado(){
+	public void testAnoErrado(){
 		Brasil dados = new Brasil();
 		dados.setAno(1234);
 		assertNotEquals(dados.getAno(), 1234.00);
@@ -76,6 +87,14 @@ public class BrasilTest {
 		dados.setValor(4321);
 		assertNotEquals(dados.getValor(), 4321.00);
 		assertNotNull(dados.getValor());
+	}
+	
+	@Test
+	public void testRegiaoErrado(){
+		Brasil dados = new Brasil();
+		dados.setRegiao("Regional");
+		assertNotEquals(dados.getRegiao(),"Lanoicpo");
+		assertNotNull(dados.getRegiao());
 	}
 	
 	@Test
