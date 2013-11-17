@@ -18,38 +18,13 @@ public class BrasilTest {
 	public void tearDown() throws Exception {
 	}
 	
-	
-	@Test
-	public void testAno(){
-	    Brasil dados = new Brasil();
-		assertEquals(0, dados.getAno());
-		dados.setAno(1234);
-		assertEquals(1234, dados.getAno());
-		dados.setAno(0);
-		assertEquals(0, dados.getAno());
-		dados.setAno(555555555);
-		assertEquals(555555555, dados.getAno());		
-	}
-	
-	@Test
-	public void testValor(){
-		Brasil dados = new Brasil();
-		assertEquals(0, dados.getValor());
-		dados.setValor(4321);
-		assertEquals(4321, dados.getValor());
-		dados.setValor(0);
-		assertEquals(0, dados.getValor());
-		dados.setValor(555555555);
-		assertEquals(555555555,dados.getValor());
-	}
-	
 	@Test
 	public void testRegiao(){
 		Brasil dados = new Brasil();
 		assertNull(dados.getRegiao());
-		dados.setTipo("Tipacional");
+		dados.setRegiao("Tipacional");
 		assertEquals("Tipacional", dados.getRegiao());
-		dados.setTipo("");
+		dados.setRegiao("");
 		assertEquals("", dados.getRegiao());
 	}
 	
@@ -72,7 +47,55 @@ public class BrasilTest {
 		dados.setTipo("");
 		assertEquals("", dados.getTipo());
 	}
+	
+	@Test
+	public void testAno(){
+	    Brasil dados = new Brasil();
+		assertEquals(0, dados.getAno());
+		dados.setAno(1234);
+		assertEquals(1234, dados.getAno());
+		dados.setAno(0);
+		assertEquals(0, dados.getAno());
+		dados.setAno(555555555);
+		assertEquals(555555555, dados.getAno());		
+	}
 
+	@Test
+	public void testValor(){
+		Brasil dados = new Brasil();
+		assertEquals(0, dados.getValor());
+		dados.setValor(4321);
+		assertEquals(4321, dados.getValor());
+		dados.setValor(0);
+		assertEquals(0, dados.getValor());
+		dados.setValor(555555555);
+		assertEquals(555555555,dados.getValor());
+	}
+	
+	@Test
+	public void testRegiaoErrado(){
+		Brasil dados = new Brasil();
+		dados.setRegiao("Regional");
+		assertNotEquals(dados.getRegiao(),"Lanoicpo");
+		assertNotNull(dados.getRegiao());
+	}
+	
+	@Test
+	public void testOpcaoErrada(){
+		Brasil dados = new Brasil();
+		dados.setOpcao("Opcional");
+		assertNotEquals(dados.getOpcao(),"Lanoicpo");
+		assertNotNull(dados.getOpcao());
+	}
+	
+	@Test
+	public void testTipoErrado(){
+		Brasil dados = new Brasil();
+		dados.setTipo("Tipacional");
+		assertNotEquals(dados.getTipo(),"Lanoicapit");
+		assertNotNull(dados.getTipo());
+	}
+	
 	@Test
 	public void testAnoErrado(){
 		Brasil dados = new Brasil();
@@ -87,30 +110,6 @@ public class BrasilTest {
 		dados.setValor(4321);
 		assertNotEquals(dados.getValor(), 4321.00);
 		assertNotNull(dados.getValor());
-	}
-	
-	@Test
-	public void testRegiaoErrado(){
-		Brasil dados = new Brasil();
-		dados.setRegiao("Regional");
-		assertNotEquals(dados.getRegiao(),"Lanoicpo");
-		assertNotNull(dados.getRegiao());
-	}
-	
-	@Test
-	public void testOpcaoErrado(){
-		Brasil dados = new Brasil();
-		dados.setOpcao("Opcional");
-		assertNotEquals(dados.getOpcao(),"Lanoicpo");
-		assertNotNull(dados.getOpcao());
-	}
-	
-	@Test
-	public void testTipoErrado(){
-		Brasil dados = new Brasil();
-		dados.setTipo("Tipacional");
-		assertNotEquals(dados.getTipo(),"Lanoicapit");
-		assertNotNull(dados.getTipo());
 	}
 
 }
