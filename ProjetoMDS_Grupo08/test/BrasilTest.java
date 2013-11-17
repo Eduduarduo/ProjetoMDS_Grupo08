@@ -9,7 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class BrasilTest {
-
+	
+	Brasil brasil = new Brasil();
+	
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -20,96 +22,86 @@ public class BrasilTest {
 	
 	@Test
 	public void testRegiao(){
-		Brasil dados = new Brasil();
-		assertNull(dados.getRegiao());
-		dados.setRegiao("Tipacional");
-		assertEquals("Tipacional", dados.getRegiao());
-		dados.setRegiao("");
-		assertEquals("", dados.getRegiao());
+		assertNull(brasil.getRegiao());
+		brasil.setRegiao("Tipacional");
+		assertEquals("Tipacional", brasil.getRegiao());
+		brasil.setRegiao("");
+		assertEquals("", brasil.getRegiao());
 	}
 	
 	@Test
 	public void testOpcao(){
-		Brasil dados = new Brasil();
-		assertNull(dados.getOpcao());
-		dados.setOpcao("Opcional");
-		assertEquals("Opcional", dados.getOpcao());
-		dados.setOpcao("");
-		assertEquals("", dados.getOpcao());
+		assertNull(brasil.getOpcao());
+		brasil.setOpcao("Opcional");
+		assertEquals("Opcional", brasil.getOpcao());
+		brasil.setOpcao("");
+		assertEquals("", brasil.getOpcao());
 	}
 	
 	@Test
 	public void testTipo(){
-		Brasil dados = new Brasil();
-		assertNull(dados.getTipo());
-		dados.setTipo("Tipacional");
-		assertEquals("Tipacional", dados.getTipo());
-		dados.setTipo("");
-		assertEquals("", dados.getTipo());
+		assertNull(brasil.getTipo());
+		brasil.setTipo("Tipacional");
+		assertEquals("Tipacional", brasil.getTipo());
+		brasil.setTipo("");
+		assertEquals("", brasil.getTipo());
 	}
 	
 	@Test
 	public void testAno(){
-	    Brasil dados = new Brasil();
-		assertEquals(0, dados.getAno());
-		dados.setAno(1234);
-		assertEquals(1234, dados.getAno());
-		dados.setAno(0);
-		assertEquals(0, dados.getAno());
-		dados.setAno(555555555);
-		assertEquals(555555555, dados.getAno());		
+		assertEquals(0, brasil.getAno());
+		brasil.setAno(1234);
+		assertEquals(1234, brasil.getAno());
+		brasil.setAno(0);
+		assertEquals(0, brasil.getAno());
+		brasil.setAno(555555555);
+		assertEquals(555555555, brasil.getAno());		
 	}
 
 	@Test
 	public void testValor(){
-		Brasil dados = new Brasil();
-		assertEquals(0, dados.getValor());
-		dados.setValor(4321);
-		assertEquals(4321, dados.getValor());
-		dados.setValor(0);
-		assertEquals(0, dados.getValor());
-		dados.setValor(555555555);
-		assertEquals(555555555,dados.getValor());
+		assertEquals(0, brasil.getValor());
+		brasil.setValor(4321);
+		assertEquals(4321, brasil.getValor());
+		brasil.setValor(0);
+		assertEquals(0, brasil.getValor());
+		brasil.setValor(555555555);
+		assertEquals(555555555,brasil.getValor());
 	}
 	
 	@Test
-	public void testRegiaoErrado(){
-		Brasil dados = new Brasil();
-		dados.setRegiao("Regional");
-		assertNotEquals(dados.getRegiao(),"Lanoicpo");
-		assertNotNull(dados.getRegiao());
+	public void testRegiaoErrada(){
+		brasil.setRegiao("Regional");
+		assertNotEquals(brasil.getRegiao(),"Lanoicpo");
+		assertNotNull(brasil.getRegiao());
 	}
 	
 	@Test
 	public void testOpcaoErrada(){
-		Brasil dados = new Brasil();
-		dados.setOpcao("Opcional");
-		assertNotEquals(dados.getOpcao(),"Lanoicpo");
-		assertNotNull(dados.getOpcao());
+		brasil.setOpcao("Opcional");
+		assertNotEquals(brasil.getOpcao(),"Lanoicpo");
+		assertNotNull(brasil.getOpcao());
 	}
 	
 	@Test
 	public void testTipoErrado(){
-		Brasil dados = new Brasil();
-		dados.setTipo("Tipacional");
-		assertNotEquals(dados.getTipo(),"Lanoicapit");
-		assertNotNull(dados.getTipo());
+		brasil.setTipo("Tipacional");
+		assertNotEquals(brasil.getTipo(),"Lanoicapit");
+		assertNotNull(brasil.getTipo());
 	}
 	
 	@Test
 	public void testAnoErrado(){
-		Brasil dados = new Brasil();
-		dados.setAno(1234);
-		assertNotEquals(dados.getAno(), 1234.00);
-		assertNotNull(dados.getAno());
+		brasil.setAno(1234);
+		assertNotEquals(brasil.getAno(), 1234.00);
+		assertNotNull(brasil.getAno());
 	}
 	
 	@Test
 	public void testValorErrado(){
-		Brasil dados = new Brasil();
-		dados.setValor(4321);
-		assertNotEquals(dados.getValor(), 4321.00);
-		assertNotNull(dados.getValor());
+		brasil.setValor(4321);
+		assertNotEquals(brasil.getValor(), 4321.00);
+		assertNotNull(brasil.getValor());
 	}
 
 }
