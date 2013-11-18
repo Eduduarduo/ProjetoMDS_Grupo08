@@ -2,15 +2,17 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import dao.RegiaoMetropolitanaDao;
 
-@WebServlet("/servletRegiaoMetropolitana")
+@WebServlet(name = "/servletRegiaoMetropolitana", urlPatterns = "/regiaoMetropolitana")
 public class servletRegiaoMetropolitana extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -58,8 +60,18 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 			int ano1 = Integer.parseInt(request.getParameter("ano1"));
 			int ano2 = Integer.parseInt(request.getParameter("ano2"));
 			String regiaoMetropole = request.getParameter("regiao");
-			ComparacaoRegioaMetropolitanaPorAno(regiaoMetropole, ano1, ano2,
-					this.regiaoMetropolitanaDao, rd, request, response);
+
+			if (ano1 != ano2) {
+
+				ComparacaoRegioaMetropolitanaPorAno(regiaoMetropole, ano1,
+						ano2, this.regiaoMetropolitanaDao, rd, request,	response);
+
+			} else {
+
+				String msg = "Os anos escolhidos devem ser diferentes!";
+				this.request.setAttribute("msg", msg);
+				
+			}
 			break;
 
 		case "comparacaoRegiao":
@@ -68,9 +80,19 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 			int anoComparacao = Integer.parseInt(request.getParameter("ano"));
 			String regiao1 = request.getParameter("regiao1");
 			String regiao2 = request.getParameter("regiao2");
-			ComparacaoRegioaMetropolitanaPorRegiao(regiao1, anoComparacao, regiao2,
-					this.regiaoMetropolitanaDao, rd, request, response);
-	
+			
+			if (regiao1 != regiao2) {
+				
+				ComparacaoRegioaMetropolitanaPorRegiao(regiao1, anoComparacao,
+						regiao2, this.regiaoMetropolitanaDao, rd, request, response);
+				
+			} else {
+
+				String msg = "As regiıes metropolitanas escolhidas devem ser diferentes!";
+				this.request.setAttribute("msg", msg);
+
+			}
+
 			break;
 
 		default:
@@ -84,7 +106,8 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 
 	// Metodos usados para as buscas
 
-	public void buscaRegiaoMetropolitana(String regiao, int ano,RegiaoMetropolitanaDao regiaoMetropolitanaDao,
+	public void buscaRegiaoMetropolitana(String regiao, int ano,
+			RegiaoMetropolitanaDao regiaoMetropolitanaDao,
 			RequestDispatcher rd, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -95,20 +118,25 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 
 		try {
 			// Busca simples de Brasil
-			if (this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao, ano) != null
-					&& this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao, ano) != null) {
+			if (this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(
+					regiao, ano) != null
+					&& this.regiaoMetropolitanaDao
+							.buscaRegiaoMetropolitanaRelativo(regiao, ano) != null) {
 
 				request.setAttribute("listaAbsolutoBusca",
-						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao, ano));
+						this.regiaoMetropolitanaDao
+								.buscaRegiaoMetropolitanaAbsoluto(regiao, ano));
 				request.setAttribute("listaRelativoBusca",
-						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao, ano));
-				
+						this.regiaoMetropolitanaDao
+								.buscaRegiaoMetropolitanaRelativo(regiao, ano));
+
 				// Enviar a lista para pagina de exibi√ß√£o do gr√°fico
-				this.rd = this.request.getRequestDispatcher("RegiaoMetropolitana.jsp");
+				this.rd = this.request
+						.getRequestDispatcher("regiaoMetropolitana.jsp");
 				this.rd.forward(this.request, this.response);
 			} else {
 				// Redirecionar para pagina de erro
-				this.rd = this.request.getRequestDispatcher("erro.html");
+				this.rd = this.request.getRequestDispatcher("index.html");
 				this.rd.forward(this.request, this.response);
 			}
 		} catch (Exception e) {
@@ -118,15 +146,15 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 					+ e.getClass() + ";   MENSAGEM  :" + e.getMessage();
 
 			request.setAttribute("erro", mes);
-			this.rd = request.getRequestDispatcher("erro.jsp");
+			this.rd = request.getRequestDispatcher("regiaoMetropolitana.jsp");
 			this.rd.forward(request, response);
 
 		}
 
 	}
 
-	public void ComparacaoRegioaMetropolitanaPorAno(String regiao, int ano1, int ano2,
-			RegiaoMetropolitanaDao regiaoMetropolitanaDao,
+	public void ComparacaoRegioaMetropolitanaPorAno(String regiao, int ano1,
+			int ano2, RegiaoMetropolitanaDao regiaoMetropolitanaDao,
 			RequestDispatcher rd, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		{
@@ -136,25 +164,36 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 			this.response = response;
 
 			try {
-				if ((this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao, ano1) != null && this.regiaoMetropolitanaDao
-						.buscaRegiaoMetropolitanaRelativo(regiao, ano1) != null && this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao, ano2) != null
-						&& this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao, ano2) != null)){
-						
+				if ((this.regiaoMetropolitanaDao
+						.buscaRegiaoMetropolitanaAbsoluto(regiao, ano1) != null
+						&& this.regiaoMetropolitanaDao
+								.buscaRegiaoMetropolitanaRelativo(regiao, ano1) != null
+						&& this.regiaoMetropolitanaDao
+								.buscaRegiaoMetropolitanaAbsoluto(regiao, ano2) != null && this.regiaoMetropolitanaDao
+							.buscaRegiaoMetropolitanaRelativo(regiao, ano2) != null)) {
 
-					this.request.setAttribute("listaAbsolutoComparacaoAno", this.regiaoMetropolitanaDao
-											.buscaRegiaoMetropolitanaAbsoluto(regiao, ano1));
+					this.request.setAttribute("listaAbsolutoComparacaoAno",
+							this.regiaoMetropolitanaDao
+									.buscaRegiaoMetropolitanaAbsoluto(regiao,
+											ano1));
 					this.request.setAttribute("listaRelativoComparacaoAno",
-									this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao, ano1));
-					
-					
-					this.request.setAttribute("listaAbsolutoComparacaoAno2", 
-							this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao, ano2));
-					this.request.setAttribute("listaRelativoComparacaoAno2",
-									this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao, ano2));
+							this.regiaoMetropolitanaDao
+									.buscaRegiaoMetropolitanaRelativo(regiao,
+											ano1));
 
-					this.rd = this.request.getRequestDispatcher("regiaoMetropolitana.jsp");
+					this.request.setAttribute("listaAbsolutoComparacaoAno2",
+							this.regiaoMetropolitanaDao
+									.buscaRegiaoMetropolitanaAbsoluto(regiao,
+											ano2));
+					this.request.setAttribute("listaRelativoComparacaoAno2",
+							this.regiaoMetropolitanaDao
+									.buscaRegiaoMetropolitanaRelativo(regiao,
+											ano2));
+
+					this.rd = this.request
+							.getRequestDispatcher("regiaoMetropolitana.jsp");
 					this.rd.forward(request, response);
-					
+
 				} else {
 					// Redirecionar para pagina de erro
 					this.rd = this.request.getRequestDispatcher("erro.html");
@@ -177,7 +216,8 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 	}
 
 	// comparaÁ„o por regiao metropolitana
-	public void ComparacaoRegioaMetropolitanaPorRegiao(String regiao1,int ano1, String regiao2,
+	public void ComparacaoRegioaMetropolitanaPorRegiao(String regiao1,
+			int ano1, String regiao2,
 			RegiaoMetropolitanaDao regiaoMetropolitanaDao,
 			RequestDispatcher rd, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -188,24 +228,37 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 			this.response = response;
 
 			try {
-				if(this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao1, ano1) != null && 
-						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto( regiao1, ano1 ) != null &&
-						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao2, ano1) != null && 
-						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao2, ano1) != null){
+				if (this.regiaoMetropolitanaDao
+						.buscaRegiaoMetropolitanaRelativo(regiao1, ano1) != null
+						&& this.regiaoMetropolitanaDao
+								.buscaRegiaoMetropolitanaAbsoluto(regiao1, ano1) != null
+						&& this.regiaoMetropolitanaDao
+								.buscaRegiaoMetropolitanaRelativo(regiao2, ano1) != null
+						&& this.regiaoMetropolitanaDao
+								.buscaRegiaoMetropolitanaAbsoluto(regiao2, ano1) != null) {
 
 					this.request.setAttribute("listaAbsolutoComparacaoRegiao1",
-							this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao1, ano1));
-					this.request.setAttribute("listaRelativoComparacaoRegiao1", 
-							this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao1, ano1));
-					
-					this.request.setAttribute("listaAbsolutoComparacaoRegiao2",
-									this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao2, ano1));
-					this.request.setAttribute("listaRelativoComparacaoRegiao2",
-									this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao2, ano1));
+							this.regiaoMetropolitanaDao
+									.buscaRegiaoMetropolitanaAbsoluto(regiao1,
+											ano1));
+					this.request.setAttribute("listaRelativoComparacaoRegiao1",
+							this.regiaoMetropolitanaDao
+									.buscaRegiaoMetropolitanaRelativo(regiao1,
+											ano1));
 
-					this.rd = this.request.getRequestDispatcher("regiaoMetropolitana.jsp");
+					this.request.setAttribute("listaAbsolutoComparacaoRegiao2",
+							this.regiaoMetropolitanaDao
+									.buscaRegiaoMetropolitanaAbsoluto(regiao2,
+											ano1));
+					this.request.setAttribute("listaRelativoComparacaoRegiao2",
+							this.regiaoMetropolitanaDao
+									.buscaRegiaoMetropolitanaRelativo(regiao2,
+											ano1));
+
+					this.rd = this.request
+							.getRequestDispatcher("regiaoMetropolitana.jsp");
 					this.rd.forward(request, response);
-					
+
 				} else {
 					// Redirecionar para pagina de erro
 					this.rd = this.request.getRequestDispatcher("erro.html");
@@ -257,7 +310,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 
 	}
 
-	public void getAnosComparacaoRegiaoMetropolinata(int ano,
+	public void getAnosComparacaoRegiaoMetropolitana(int ano,
 			RegiaoMetropolitanaDao regiaoMetropolitanaDao,
 			RequestDispatcher rd, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,
