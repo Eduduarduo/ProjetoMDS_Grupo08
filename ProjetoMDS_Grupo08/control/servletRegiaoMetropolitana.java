@@ -63,7 +63,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 
 			if (ano1 != ano2) {
 
-				ComparacaoRegioaMetropolitanaPorAno(regiaoMetropole, ano1,
+				ComparacaoRegiaoMetropolitanaPorAno(regiaoMetropole, ano1,
 						ano2, this.regiaoMetropolitanaDao, rd, request,	response);
 
 			} else {
@@ -83,7 +83,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 			
 			if (regiao1 != regiao2) {
 				
-				ComparacaoRegioaMetropolitanaPorRegiao(regiao1, anoComparacao,
+				ComparacaoRegiaoMetropolitanaPorRegiao(regiao1, anoComparacao,
 						regiao2, this.regiaoMetropolitanaDao, rd, request, response);
 				
 			} else {
@@ -153,7 +153,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 
 	}
 
-	public void ComparacaoRegioaMetropolitanaPorAno(String regiao, int ano1,
+	public void ComparacaoRegiaoMetropolitanaPorAno(String regiao, int ano1,
 			int ano2, RegiaoMetropolitanaDao regiaoMetropolitanaDao,
 			RequestDispatcher rd, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -169,10 +169,10 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 						&& this.regiaoMetropolitanaDao
 								.buscaRegiaoMetropolitanaRelativo(regiao, ano1) != null
 						&& this.regiaoMetropolitanaDao
-								.buscaRegiaoMetropolitanaAbsoluto(regiao, ano2) != null && this.regiaoMetropolitanaDao
-							.buscaRegiaoMetropolitanaRelativo(regiao, ano2) != null)) {
-
-					this.request.setAttribute("listaAbsolutoComparacaoAno",
+								.buscaRegiaoMetropolitanaAbsoluto(regiao, ano2) != null 
+						&& this.regiaoMetropolitanaDao
+								.buscaRegiaoMetropolitanaRelativo(regiao, ano2) != null)) {
+							this.request.setAttribute("listaAbsolutoComparacaoAno",
 							this.regiaoMetropolitanaDao
 									.buscaRegiaoMetropolitanaAbsoluto(regiao,
 											ano1));
@@ -216,7 +216,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 	}
 
 	// comparação por regiao metropolitana
-	public void ComparacaoRegioaMetropolitanaPorRegiao(String regiao1,
+	public void ComparacaoRegiaoMetropolitanaPorRegiao(String regiao1,
 			int ano1, String regiao2,
 			RegiaoMetropolitanaDao regiaoMetropolitanaDao,
 			RequestDispatcher rd, HttpServletRequest request,
@@ -277,6 +277,26 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 				this.rd = this.request.getRequestDispatcher("erro.jsp");
 				this.rd.forward(this.request, this.response);
 			}
+			
+			
+			
+			
+			
+			
+			
+			//} catch (ComparacaoException e) {
+				//System.out.println("Por favor, selecione uma opção diferente.");
+			//}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		}
 	}
 
