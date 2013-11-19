@@ -15,7 +15,7 @@ import dao.RegiaoMetropolitanaDao;
 @WebServlet(name = "/servletRegiaoMetropolitana", urlPatterns = "/regiaoMetropolitana")
 public class servletRegiaoMetropolitana extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	RegiaoMetropolitanaDao regiaoMetropolitanaDao;
 	RequestDispatcher rd;
 	HttpServletRequest request;
@@ -43,6 +43,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 
 		// Metodo switch busca o parametro de comando passado da view
 		switch (request.getParameter("cmd")) {
+		
 		case "busca":
 
 			int ano = Integer.parseInt(request.getParameter("ano"));
@@ -54,24 +55,14 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 					rd, request, response);
 
 			break;
+			
 		case "comparacaoAno":
 			// Quando o comando requisita a compara√ß√£o
 			// Captura de parametros passados para a compara√ß√£o
 			int ano1 = Integer.parseInt(request.getParameter("ano1"));
 			int ano2 = Integer.parseInt(request.getParameter("ano2"));
 			String regiaoMetropole = request.getParameter("regiao");
-
-			if (ano1 != ano2) {
-
-				ComparacaoRegiaoMetropolitanaPorAno(regiaoMetropole, ano1,
-						ano2, this.regiaoMetropolitanaDao, rd, request,	response);
-
-			} else {
-
-				String msg = "Os anos escolhidos devem ser diferentes!";
-				this.request.setAttribute("msg", msg);
-				
-			}
+			
 			break;
 
 		case "comparacaoRegiao":
@@ -80,19 +71,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 			int anoComparacao = Integer.parseInt(request.getParameter("ano"));
 			String regiao1 = request.getParameter("regiao1");
 			String regiao2 = request.getParameter("regiao2");
-			
-			if (regiao1 != regiao2) {
 				
-				ComparacaoRegiaoMetropolitanaPorRegiao(regiao1, anoComparacao,
-						regiao2, this.regiaoMetropolitanaDao, rd, request, response);
-				
-			} else {
-
-				String msg = "As regiıes metropolitanas escolhidas devem ser diferentes!";
-				this.request.setAttribute("msg", msg);
-
-			}
-
 			break;
 
 		default:
@@ -171,7 +150,8 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 						&& this.regiaoMetropolitanaDao
 								.buscaRegiaoMetropolitanaAbsoluto(regiao, ano2) != null 
 						&& this.regiaoMetropolitanaDao
-								.buscaRegiaoMetropolitanaRelativo(regiao, ano2) != null)) {
+								.buscaRegiaoMetropolitanaRelativo(regiao, ano2) != null)){ 
+					
 							this.request.setAttribute("listaAbsolutoComparacaoAno",
 							this.regiaoMetropolitanaDao
 									.buscaRegiaoMetropolitanaAbsoluto(regiao,
@@ -198,7 +178,8 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 					// Redirecionar para pagina de erro
 					this.rd = this.request.getRequestDispatcher("erro.html");
 					this.rd.forward(this.request, this.response);
-				}
+					System.out.println("Por favor, escolha dois anos distintos.");
+				 } 
 
 			}
 
@@ -212,6 +193,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 				this.rd = this.request.getRequestDispatcher("erro.jsp");
 				this.rd.forward(this.request, this.response);
 			}
+			
 		}
 	}
 
@@ -235,7 +217,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 						&& this.regiaoMetropolitanaDao
 								.buscaRegiaoMetropolitanaRelativo(regiao2, ano1) != null
 						&& this.regiaoMetropolitanaDao
-								.buscaRegiaoMetropolitanaAbsoluto(regiao2, ano1) != null) {
+								.buscaRegiaoMetropolitanaAbsoluto(regiao2, ano1) != null){
 
 					this.request.setAttribute("listaAbsolutoComparacaoRegiao1",
 							this.regiaoMetropolitanaDao
@@ -258,7 +240,7 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 					this.rd = this.request
 							.getRequestDispatcher("regiaoMetropolitana.jsp");
 					this.rd.forward(request, response);
-
+					
 				} else {
 					// Redirecionar para pagina de erro
 					this.rd = this.request.getRequestDispatcher("erro.html");
@@ -277,24 +259,6 @@ public class servletRegiaoMetropolitana extends HttpServlet {
 				this.rd = this.request.getRequestDispatcher("erro.jsp");
 				this.rd.forward(this.request, this.response);
 			}
-			
-			
-			
-			
-			
-			
-			
-			//} catch (ComparacaoException e) {
-				//System.out.println("Por favor, selecione uma opÁ„o diferente.");
-			//}
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
 		}
