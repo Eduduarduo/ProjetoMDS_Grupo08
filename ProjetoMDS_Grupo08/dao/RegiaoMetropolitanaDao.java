@@ -76,7 +76,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		List<Integer> datasRM = new ArrayList<Integer>();
 		this.conexao = new ConnectionFactory().getConnection();
 		
-		//Faz a distinção das datas que são comuns nas duas tabelas
+		
 		String query ="select distinct ano from dldregiaoabsoluto " +
 				"UNION select distinct ano from dldregiaorelativo";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
@@ -98,8 +98,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		
 		List<Integer> datasRM = new ArrayList<Integer>();
 		this.conexao = new ConnectionFactory().getConnection();
-		//faz uma busca e filtra as datas e exclui a data que ja foi pesquisada, as datas são comuns em ambas tabelas,
-		//filtra tbm os dados repetidos
+		
 		String query ="select distinct ano from dldregiaoabsoluto where ano !=? " +
 				"UNION select distinct ano from dldregiaorelativo where ano !=?";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
@@ -166,8 +165,4 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 			return regioes;
 			
 		}	
-		
-	//Verificar como fazer e exibição das listas em conjunto e antes da busca usando a servlet
-
-
 }
