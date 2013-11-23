@@ -1,12 +1,10 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.RegiaoMetropolitana;
 
 public class RegiaoMetropolitanaDao extends ConnectionFactory {
@@ -67,6 +65,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		}
 		
 		stm.close();
+<<<<<<< HEAD
 		conexao.close();
 
 		return regioes;
@@ -118,6 +117,63 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		return datasRM;
 		
 	}	
+=======
+		return regiaoMetropolitana;
+	}
+	
+	public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
+	
+	List<Integer> datasRM = new ArrayList<Integer>();
+	this.conexao = new ConnectionFactory().getConnection();
+	//Faz a distinção das datas que são comuns nas duas tabelas
+	String query ="select distinct ano from dldregiaoabsoluto " +
+			"UNION select distinct ano from dldregiaorelativo";
+	java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
+	ResultSet rs = stm.executeQuery();
+
+	while (rs.next()) {
+		int dataRM;
+		dataRM = rs.getInt("ano");
+
+		datasRM.add(dataRM);
+	}
+	stm.close();
+	conexao.close();
+	return datasRM;
+	
+}	
+
+	public List<Integer>  getDatasComparacaoRegiaoMetropolitana(int ano) throws SQLException{
+	
+	List<Integer> datasRM = new ArrayList<Integer>();
+	this.conexao = new ConnectionFactory().getConnection();
+	//Comando select faz uma busca e filtra as datas e exclui 
+	//a data que ja foi pesquisada, as datas são comuns em ambas tabelas,
+	//filtra tbm os dados repetidos
+	String query ="select distinct ano from dldregiaoabsoluto where ano !=? " +
+			"UNION select distinct ano from dldregiaorelativo where ano !=?";
+	java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
+	stm.setInt(1,ano);
+	stm.setInt(2,ano);
+	
+	ResultSet rs = stm.executeQuery();
+
+	while (rs.next()) {
+		int dtRM;
+		dtRM = rs.getInt("ano");
+
+		datasRM.add(dtRM);
+	}
+	stm.close();
+	conexao.close();
+	return datasRM;
+	
+}	
+
+//Metodos que Falta exclusão por da mesma regiao Metropolitana na comparação por 
+//Regiao Metropolitana diferente e Comparação por regioes metropolitanas diferentes
+//Verificar como fazer e exibição das listas em conjunto e antes da busca usando a servlet
+>>>>>>> parent of b9b0525... criacao dos metodos na classe ComparacaoRegiaoMetropolitanaDao que pegara os valores do banco para alimentar os drop list na view
 
 	public List<String> getRegioesRegiaoMetropolitana() throws SQLException{
 			
