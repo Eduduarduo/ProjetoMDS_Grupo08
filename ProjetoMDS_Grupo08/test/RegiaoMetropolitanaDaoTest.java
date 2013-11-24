@@ -24,6 +24,8 @@ public class RegiaoMetropolitanaDaoTest {
 	public void deveRetornarQuantidadeListaRegioaoM() throws SQLException {
 		assertEquals(4, regiaoDao.buscaRegiaoMetropolitanaAbsoluto("Belem - PA", 2001).size());
 		assertNotNull(regiaoDao.buscaRegiaoMetropolitanaAbsoluto("Belem - PA", 2001));
+		assertEquals(4, regiaoDao.buscaRegiaoMetropolitanaRelativo("Belem - PA", 2001).size());
+		assertNotNull(regiaoDao.buscaRegiaoMetropolitanaRelativo("Belem - PA", 2001));
 	}
 	
 	
