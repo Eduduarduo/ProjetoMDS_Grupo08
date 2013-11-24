@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
 import static org.junit.Assert.*;
 import dao.RegiaoMetropolitanaDao;
 
@@ -17,7 +16,6 @@ public class RegiaoMetropolitanaDaoTest {
 	
 	@Before
 	public void init() throws SQLException{
-		MockitoAnnotations.initMocks(this);
 		regiaoDao = new RegiaoMetropolitanaDao();
 		
 }
