@@ -7,12 +7,8 @@ import java.sql.SQLException;
 
 import org.junit.Before;
 import org.junit.Test;
-//import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import static org.junit.Assert.*;
-//import static org.mockito.Mockito.*;
-
 import dao.RegiaoMetropolitanaDao;
 
 public class RegiaoMetropolitanaDaoTest {
@@ -27,16 +23,36 @@ public class RegiaoMetropolitanaDaoTest {
 }
 	
 	@Test
-	public void testaQuantidadeReturonoListaRegiaoMetropolitna() throws SQLException {
+	public void deveRetornarQuantidadeListaRegioaoM() throws SQLException {
 		assertEquals(4, regiaoDao.buscaRegiaoMetropolitanaAbsoluto("Belem - PA", 2001).size());
+		assertNotNull(regiaoDao.buscaRegiaoMetropolitanaAbsoluto("Belem - PA", 2001));
+	}
+	
+	
+	@Test
+	public void deveRetornarQuantidadeListaAnos() throws SQLException{
+		assertEquals(9, regiaoDao.getAnosRegiaoMetropolitana().size());
+		assertNotNull( regiaoDao.getAnosRegiaoMetropolitana());
 		
 	}
 	
-	
-	//preciso verificar se a lista está vazia? eu acho desnecessário
 	@Test
-	public void testaSeListaRegiaoMetropolitanaEstaVazia() throws SQLException{
-		assertFalse(regiaoDao.buscaRegiaoMetropolitanaAbsoluto("Belem - PA", 2001).isEmpty());
+	public void deveRetornarQuantidadeListaAnosComparacao() throws SQLException{
+		assertEquals(8, regiaoDao.getAnosComparacaoRegiaoMetropolitana(2001).size());
+		assertNotNull(regiaoDao.getAnosComparacaoRegiaoMetropolitana(2001));
 	}
+	
+	@Test
+	public void deveRetornarQuantidadeListaRegioes() throws SQLException{
+		assertEquals(9, regiaoDao.getRegioesRegiaoMetropolitana().size());
+		assertNotNull(regiaoDao.getAnosComparacaoRegiaoMetropolitana(2001));
+	}
+	
+	@Test
+	public void deveRetornarQuantidadeListaRegioesComparacao() throws SQLException{
+		assertEquals(8, regiaoDao.getRegioesComparacaoRegiaoMetropolitana("Belem - PA").size());
+		assertNotNull(regiaoDao.getRegioesComparacaoRegiaoMetropolitana("Belem - PA"));
+	}
+	
 
 }
