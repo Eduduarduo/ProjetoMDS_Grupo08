@@ -77,4 +77,31 @@ public class RegiaoMetropolitanaTest {
 		assertNotNull(rm.getRegiao());
 	}
 	
+	@Test
+	public void testOpcaoErrada(){
+		rm.setOpcao("Opcional");
+		assertNotEquals(rm.getOpcao(),"Lanoicpo");
+		assertNotNull(rm.getOpcao());
+	}
+	
+	@Test
+	public void testTipoErrado(){
+		rm.setTipo("Tipacional");
+		assertNotEquals(rm.getTipo(),"Lanoicapit");
+		assertNotNull(rm.getTipo());
+	}
+
+	@Test
+	public void testAnoErrado(){
+		rm.setAno(1234);
+		assertNotEquals(rm.getAno(), 1234.00);
+		assertNotNull(rm.getAno());
+	}
+	
+	@Test
+	public void testValorErrado(){
+		rm.setValor(4321);
+		assertNotEquals(rm.getValor(), 4321.00);
+		assertNotNull(rm.getValor());
+	}
 }

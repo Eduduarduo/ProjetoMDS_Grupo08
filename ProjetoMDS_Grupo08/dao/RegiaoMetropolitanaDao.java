@@ -1,12 +1,10 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.RegiaoMetropolitana;
 
 public class RegiaoMetropolitanaDao extends ConnectionFactory {
@@ -20,17 +18,16 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 	}
 
 	// Metodo que busca todos os valores Absolutos de Brasil
-	public List<RegiaoMetropolitana> buscaRegiaoMetropolitanaAbsoluto(String regiao, int ano) throws SQLException {
+	public List<RegiaoMetropolitana> buscaRegiaoMetropolitanaAbsolutoPorAno(int ano) throws SQLException {
 		//Instancia que será de retorno
 		List<RegiaoMetropolitana> regiaoMetropolitana = new ArrayList<RegiaoMetropolitana>();
 		// Criando uma conexao com a Classe ConnectionFactory
 		this.conexao = new ConnectionFactory().getConnection();
 		//Comando query 
-		String query = "select * from dldlregiaoabsoluto where ano = ? and regiao = ?";
+		String query = "select * from dldlregiaoabsoluto where ano = ? ";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		//Parametro de busca 
 		stm.setInt(1, ano);
-		stm.setString(2, regiao);
 		ResultSet rs = stm.executeQuery();
 
 		while (rs.next()) {
@@ -50,15 +47,14 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		return regiaoMetropolitana;
 	}
 	
-	public List<RegiaoMetropolitana> buscaRegiaoMetropolitanaRelativo(String regiao, int ano) throws SQLException {
+	public List<RegiaoMetropolitana> buscaRegiaoMetropolitanaRelativoPorAno(int ano) throws SQLException {
 		
 		List<RegiaoMetropolitana> regiaoMetropolitana = new ArrayList<RegiaoMetropolitana>();
 		// Criando uma conexao com a Classe ConnectionFactory
 		this.conexao = new ConnectionFactory().getConnection();
-		String query = "select * from dldregiaorelativo where ano = ? and regiao = ?";
+		String query = "select * from dldregiaorelativo where ano = ? ";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		stm.setInt(1, ano);
-		stm.setString(2, regiao);
 		ResultSet rs = stm.executeQuery();
 
 		while (rs.next()) {
@@ -76,11 +72,10 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		return regiaoMetropolitana;
 	}
 	
-	public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
+public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
 	
 	List<Integer> datasRM = new ArrayList<Integer>();
 	this.conexao = new ConnectionFactory().getConnection();
-	
 	//Faz a distinção das datas que são comuns nas duas tabelas
 	String query ="select distinct ano from dldregiaoabsoluto " +
 			"UNION select distinct ano from dldregiaorelativo";
@@ -99,7 +94,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 	
 }	
 
-	public List<Integer>  getDatasComparacaoRegiaoMetropolitana(int ano) throws SQLException{
+public List<Integer>  getDatasComparaçãoRegiaoMetropolitana(int ano) throws SQLException{
 	
 	List<Integer> datasRM = new ArrayList<Integer>();
 	this.conexao = new ConnectionFactory().getConnection();
@@ -126,54 +121,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 	
 }	
 
-	public List<String> getRegioesRegiaoMetropolitana() throws SQLException{
-		
-		List<String> regioes = new ArrayList<String>();
-		
-		this.conexao = new ConnectionFactory().getConnection();
-		
-		String query ="select distinct regiao from dldregiaoabsoluto " +
-				"UNION select distinct regiao from dldregiaorelativo";
-		
-		PreparedStatement stm = this.conexao.prepareStatement(query);
-		ResultSet rs = stm.executeQuery();
-
-		while (rs.next()) {
-			String  regiaoRM;
-			regiaoRM = rs.getString("regiao");
-			regioes.add(regiaoRM);
-		}
-		stm.close();
-		conexao.close();
-		return regioes;
-		
-	}
-	
-	public List<String> getRegioesComparacaoRegiaoMetropolitana(String regiao) throws SQLException{
-		
-		List<String> regioes = new ArrayList<String>();
-		
-		this.conexao = new ConnectionFactory().getConnection();
-		
-		String query ="select distinct regiao from dldregiaoabsoluto where regiao != ?" +
-				"UNION select distinct regiao from dldregiaorelativo where regiao != ?";
-		
-		PreparedStatement stm = this.conexao.prepareStatement(query);
-		stm.setString(1, regiao);
-		ResultSet rs = stm.executeQuery();
-
-		while (rs.next()) {
-			String  regiaoComparacaoRM;
-			regiaoComparacaoRM = rs.getString("regiao");
-			regioes.add(regiaoComparacaoRM);
-		}
-		stm.close();
-		conexao.close();
-		return regioes;
-		
-	}	
-	
-	
+//Metodos que Falta exclusão por da mesma regiao Metropolitana na comparação por 
 //Regiao Metropolitana diferente e Comparação por regioes metropolitanas diferentes
 //Verificar como fazer e exibição das listas em conjunto e antes da busca usando a servlet
 
