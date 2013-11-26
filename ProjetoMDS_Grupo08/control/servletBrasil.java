@@ -14,7 +14,7 @@ import exception.ExceptionsServlets;
 
 //Padrão Servlet 3.0 onde o urlpartterns e o nome onde e chamado pela view
 @WebServlet(name = "/servletBrasil", urlPatterns = "/buscaBrasil")
-public class servletBrasil extends HttpServlet {
+public class ServletBrasil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	BrasilDao brasilDao;
@@ -23,7 +23,7 @@ public class servletBrasil extends HttpServlet {
 	HttpServletResponse response;
 	ExceptionsServlets exception;
 
-	public servletBrasil() {
+	public ServletBrasil() {
 		super();
 	}
 
@@ -133,9 +133,9 @@ public class servletBrasil extends HttpServlet {
 		this.response = response;
 		this.exception = new ExceptionsServlets();
 		
-		if (this.exception.validaAnosListBox(this.brasilDao.getDatasComparação(ano)) == true) {
+		if (this.exception.validaAnosListBox(this.brasilDao.getDatasComparacao(ano)) == true) {
 			this.request.setAttribute("listaDatasComparacao",
-					this.brasilDao.getDatasComparação(ano));
+					this.brasilDao.getDatasComparacao(ano));
 			this.rd = this.request.getRequestDispatcher("brasil.jsp");
 		} else {
 			carregarPaginaErro();

@@ -111,7 +111,7 @@ public class UnidadeFederativaDao {
 	
 	
 	
-	public List<Integer>  getDatasComparaçãoUnidadeFederativa(int ano) throws SQLException{
+	public List<Integer>  getDatasComparacaoUnidadeFederativa(int ano) throws SQLException{
 		
 		List<Integer> datasUF = new ArrayList<Integer>();
 		this.conexao = new ConnectionFactory().getConnection();

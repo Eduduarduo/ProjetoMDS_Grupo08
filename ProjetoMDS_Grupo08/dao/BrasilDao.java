@@ -94,7 +94,7 @@ public List<Integer>  getDatas() throws SQLException{
 	
 }	
 
-public List<Integer>  getDatasComparação(int ano) throws SQLException{
+public List<Integer>  getDatasComparacao(int ano) throws SQLException{
 	
 	List<Integer> datas = new ArrayList<Integer>();
 	this.conexao = new ConnectionFactory().getConnection();

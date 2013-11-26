@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -120,8 +121,6 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		
 	}	
 
-		return regiaoMetropolitana;
-	}
 	
 public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
 	
@@ -145,7 +144,7 @@ public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
 	
 }	
 
-public List<Integer>  getDatasComparaçãoRegiaoMetropolitana(int ano) throws SQLException{
+public List<Integer>  getDatasComparacaoRegiaoMetropolitana(int ano) throws SQLException{
 	
 	List<Integer> datasRM = new ArrayList<Integer>();
 	this.conexao = new ConnectionFactory().getConnection();

@@ -12,7 +12,7 @@ import dao.UnidadeFederativaDao;
 import exception.ExceptionsServlets;
 
 @WebServlet("/servletUnidadeFederativa")
-public class servletUnidadeFederativa extends HttpServlet {
+public class ServletUnidadeFederativa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	UnidadeFederativaDao unidadeFederativaDao;
@@ -21,7 +21,7 @@ public class servletUnidadeFederativa extends HttpServlet {
 	HttpServletResponse response;
 	ExceptionsServlets exceptions;
 
-	public servletUnidadeFederativa() {
+	public ServletUnidadeFederativa() {
 		super();
 	}
 
@@ -210,11 +210,11 @@ public class servletUnidadeFederativa extends HttpServlet {
 		this.response = response;
 		this.exceptions = new ExceptionsServlets();
 		if (exceptions.validaAnosListBox(
-				this.unidadeFederativaDao.getDatasComparaçãoUnidadeFederativa(ano)) == true) {
+				this.unidadeFederativaDao.getDatasComparacaoUnidadeFederativa(ano)) == true) {
 
 			this.request.setAttribute("listaDatasComparacao",
 					this.unidadeFederativaDao
-							.getDatasComparaçãoUnidadeFederativa(ano));
+							.getDatasComparacaoUnidadeFederativa(ano));
 			this.rd = this.request
 					.getRequestDispatcher("unidadesFederativa.jsp");
 
