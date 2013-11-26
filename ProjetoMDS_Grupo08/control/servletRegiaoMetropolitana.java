@@ -2,7 +2,6 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import dao.RegiaoMetropolitanaDao;
 import exception.ExceptionsServlets;
 
+
 @WebServlet(name ="/servletRegiaoMetropolitana", urlPatterns = "/buscaRegiao")
 public class ServletRegiaoMetropolitana extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	RegiaoMetropolitanaDao regiaoMetropolitanaDao;
+	private static final long serialVersionUID = 1L;
+       
+	RegiaoMetropolitanaDao   regiaoMetropolitanaDao;
 	RequestDispatcher rd;
 	HttpServletRequest request;
 	HttpServletResponse response;
@@ -27,6 +28,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 	public ServletRegiaoMetropolitana() {
 		super();
 	}
+
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -59,6 +61,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 		case "comparacaoRegiao":
 			String regiao2 = request.getParameter("regiao2");
 			ComparacaoRegiaoMetropolitanaPorRegiao(regiao1, ano1, regiao2,this.regiaoMetropolitanaDao, rd, request, response);
+
 			break;
 
 		default:
@@ -67,6 +70,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 			break;
 		}
 	}
+
 
 
 	public void buscaRegiaoMetropolitana(String regiao, int ano,RegiaoMetropolitanaDao regiaoMetropolitanaDao,
@@ -78,6 +82,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 		this.request = request;
 		this.response = response;
 		this.exceptions = new ExceptionsServlets();
+
 
 		try{
 
@@ -97,6 +102,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 		}
 
 	}
+
 
 	public void ComparacaoRegiaoMetropolitanaPorAno(String regiao, int ano1, int ano2,
 			RegiaoMetropolitanaDao regiaoMetropolitanaDao,
@@ -129,6 +135,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 
 	public void ComparacaoRegiaoMetropolitanaPorRegiao(String regiao1,int ano1, String regiao2,
 			RegiaoMetropolitanaDao regiaoMetropolitanaDao,
+
 			RequestDispatcher rd, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException{
 		
@@ -146,6 +153,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 									this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao2, ano1));
 				
 
+
 					this.rd = this.request.getRequestDispatcher("comparacao.jsp");
 					this.rd.forward(request, response);
 
@@ -157,6 +165,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 	public void getAnosRegiaoMetropolitana(RegiaoMetropolitanaDao regiaoMetropolitanaDao,RequestDispatcher rd, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,SQLException {
 
+
 		this.rd = rd;
 		this.regiaoMetropolitanaDao = regiaoMetropolitanaDao;
 		this.request = request;
@@ -166,8 +175,10 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 		
 		if (validarListBox == true){
 
+
 			this.request.setAttribute("listaDatas",this.regiaoMetropolitanaDao.getAnosRegiaoMetropolitana());
 			
+
 			// Pagina de interface com o tratamento das listagens
 			this.rd = this.request.getRequestDispatcher("regiaoMetropolitana.jsp");
 
@@ -177,8 +188,10 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 
 	}
 
+
 	public void getAnosComparacaoRegiaoMetropolinata(int ano, RegiaoMetropolitanaDao regiaoMetropolitanaDao, RequestDispatcher rd, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException,SQLException {
+
 
 		this.rd = rd;
 		this.regiaoMetropolitanaDao = regiaoMetropolitanaDao;
@@ -188,6 +201,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 		boolean validarListBox = exceptions.validaAnosListBox(this.regiaoMetropolitanaDao.
 				getAnosComparacaoRegiaoMetropolitana(ano));
 
+
 		if (validarListBox == true) {
 
 			this.request.setAttribute("listaDatasComparacao", this.regiaoMetropolitanaDao
@@ -195,6 +209,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 	
 			this.rd = this.request
 					.getRequestDispatcher("regiaoMetropolitana.jsp");
+
 
 		} else {
 			carregarPaginaErro();

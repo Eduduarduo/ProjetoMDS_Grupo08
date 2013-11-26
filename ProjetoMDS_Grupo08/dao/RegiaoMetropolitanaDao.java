@@ -14,6 +14,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 	public RegiaoMetropolitanaDao() {
 	}
 
+
 	public List<RegiaoMetropolitana> buscaRegiaoMetropolitanaAbsoluto(String regiao,int ano) throws SQLException {
 
 		List<RegiaoMetropolitana> regioes = new ArrayList<RegiaoMetropolitana>();
@@ -51,6 +52,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		PreparedStatement stm = this.conexao.prepareStatement(query);
 		stm.setInt(1,ano);
 		stm.setString(2, regiao);
+
 		ResultSet rs = stm.executeQuery();
 		
 		while(rs.next()){
@@ -65,7 +67,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		}
 		
 		stm.close();
-<<<<<<< HEAD
+
 		conexao.close();
 
 		return regioes;
@@ -117,11 +119,11 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		return datasRM;
 		
 	}	
-=======
+
 		return regiaoMetropolitana;
 	}
 	
-	public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
+public List<Integer>  getDatasRegiaoMetropolitana() throws SQLException{
 	
 	List<Integer> datasRM = new ArrayList<Integer>();
 	this.conexao = new ConnectionFactory().getConnection();
@@ -143,7 +145,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 	
 }	
 
-	public List<Integer>  getDatasComparacaoRegiaoMetropolitana(int ano) throws SQLException{
+public List<Integer>  getDatasComparaçãoRegiaoMetropolitana(int ano) throws SQLException{
 	
 	List<Integer> datasRM = new ArrayList<Integer>();
 	this.conexao = new ConnectionFactory().getConnection();
@@ -173,7 +175,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 //Metodos que Falta exclusão por da mesma regiao Metropolitana na comparação por 
 //Regiao Metropolitana diferente e Comparação por regioes metropolitanas diferentes
 //Verificar como fazer e exibição das listas em conjunto e antes da busca usando a servlet
->>>>>>> parent of b9b0525... criacao dos metodos na classe ComparacaoRegiaoMetropolitanaDao que pegara os valores do banco para alimentar os drop list na view
+
 
 	public List<String> getRegioesRegiaoMetropolitana() throws SQLException{
 			
@@ -221,4 +223,5 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 			return regioes;
 			
 		}	
+
 }
