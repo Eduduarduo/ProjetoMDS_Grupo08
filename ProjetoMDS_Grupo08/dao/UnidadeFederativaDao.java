@@ -11,29 +11,23 @@ import model.UnidadeFederativa;
 
 public class UnidadeFederativaDao {
 
-	
-	// Variavel de conexao usada para todos os metodos da classe
-		private Connection conexao;
+	private Connection conexao;
 
-		// Contrutor da classe
 		public UnidadeFederativaDao() {
 		}
-
-		// Metodo que busca todos os valores Absolutos de Brasil
-		public List<UnidadeFederativa> buscaUnidadeFederativaAbsolutoPorAno(int ano) throws SQLException {
-			//Instancia que será de retorno
+	
+	public List<UnidadeFederativa> buscaUnidadeFederativaAbsoluto(int ano,String UF) throws SQLException {
+	
 			List<UnidadeFederativa> unidadeFederativa = new ArrayList<UnidadeFederativa>();
-			// Criando uma conexao com a Classe ConnectionFactory
 			this.conexao = new ConnectionFactory().getConnection();
-			//Comando query 
-			String query = "select * from dldlufoabsoluto where ano = ? ";
+			String query = "select * from dldlufoabsoluto where ano = ? and regiao = ? ";
 			java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
-			//Parametro de busca 
 			stm.setInt(1, ano);
+			stm.setString(2,UF);
 			ResultSet rs = stm.executeQuery();
 
 			while (rs.next()) {
-				//Criando as classe para criação da lista
+			
 				UnidadeFederativa uf = new UnidadeFederativa();
 				uf.setRegiao(rs.getString("regiao"));
 				uf.setOpcao(rs.getString("opcao"));
@@ -45,18 +39,17 @@ public class UnidadeFederativaDao {
 			}
 			stm.close();
 			conexao.close();
-			//retorno da lista
 			return unidadeFederativa;
 		}
 		
-		public List<UnidadeFederativa> buscaUnidadeFederativaRelativoPorAno(int ano) throws SQLException {
+	public List<UnidadeFederativa> buscaUnidadeFederativaRelativo(int ano,String UF) throws SQLException {
 			
 			List<UnidadeFederativa> unidadeFederativa = new ArrayList<UnidadeFederativa>();
-			// Criando uma conexao com a Classe ConnectionFactory
 			this.conexao = new ConnectionFactory().getConnection();
-			String query = "select * from dldufrelativo where ano = ? ";
+			String query = "select * from dldufrelativo where ano = ? and regiao = ? ";
 			java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 			stm.setInt(1, ano);
+			stm.setString(2,UF);
 			ResultSet rs = stm.executeQuery();
 
 			while (rs.next()) {
@@ -79,9 +72,7 @@ public class UnidadeFederativaDao {
 		
 		List<Integer> datasUF = new ArrayList<Integer>();
 		this.conexao = new ConnectionFactory().getConnection();
-		//Faz a distinção das datas que são comuns nas duas tabelas
-		String query ="select distinct ano from dldufbsoluto " +
-				"UNION select distinct ano from dldufrelativo";
+		String query ="select distinct ano from dldufbsoluto UNION select distinct ano from dldufrelativo";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		ResultSet rs = stm.executeQuery();
 
@@ -96,14 +87,34 @@ public class UnidadeFederativaDao {
 		return datasUF;
 		
 	}	
+	 
+	public List<String>  getUnidadeFederativa() throws SQLException{
+		
+		List<String> datasUF = new ArrayList<String>();
+		this.conexao = new ConnectionFactory().getConnection();
+		String query ="select distinct regiao from dldufbsoluto UNION select distinct regiao from dldufrelativo";
+		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
+		ResultSet rs = stm.executeQuery();
 
+		while (rs.next()) {
+			String dataUF;
+			dataUF = rs.getString("regiao");
+
+			datasUF.add(dataUF);
+		}
+		stm.close();
+		conexao.close();
+		return datasUF;
+		
+	}	
+
+	
+	
+	
 	public List<Integer>  getDatasComparaçãoUnidadeFederativa(int ano) throws SQLException{
 		
 		List<Integer> datasUF = new ArrayList<Integer>();
 		this.conexao = new ConnectionFactory().getConnection();
-		//Comando select faz uma busca e filtra as datas e exclui 
-		//a data que ja foi pesquisada, as datas são comuns em ambas tabelas,
-		//filtra tbm os dados repetidos
 		String query ="select distinct ano from dldufabsoluto where ano !=? " +
 				"UNION select distinct ano from dldufrelativo where ano !=?";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
@@ -124,8 +135,31 @@ public class UnidadeFederativaDao {
 		
 	}	
 
-	//Metodos que Falta exclusão por da mesma regiao Unidade federativa na comparação por 
-	//unidade federativa diferente e Comparação por unidades federativas diferentes
-	//Verificar como fazer e exibição das listas em conjunto e antes da busca usando a servlet
+public List<String>  getUFComparacao(String regiao) throws SQLException{
+		
+		List<String> datasUF = new ArrayList<String>();
+		this.conexao = new ConnectionFactory().getConnection();
+		String query ="select distinct ano from dldufabsoluto where regiao !=? " +
+				"UNION select distinct ano from dldufrelativo where regiao !=?";
+		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
+		stm.setString(1,regiao);
+		stm.setString(2,regiao);
+		
+		ResultSet rs = stm.executeQuery();
+
+		while (rs.next()) {
+			String dtUF;
+			dtUF = rs.getString("regiao");
+
+			datasUF.add(dtUF);
+		}
+		stm.close();
+		conexao.close();
+		return datasUF;
+		
+	}	
+
+	
+	
 	
 }
