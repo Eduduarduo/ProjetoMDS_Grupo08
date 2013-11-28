@@ -20,8 +20,13 @@
 <jsp:include page="quadro.jsp"></jsp:include>
 <jsp:include page="menu.jsp"></jsp:include>
 <div class="conteudo">
-Esse é o erro: 
-${msg}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>Essa e  a pagina de erro arrumar essa pagina   </h1>
 </div>
 <jsp:include page="carrousel.jsp"></jsp:include>
 </body>

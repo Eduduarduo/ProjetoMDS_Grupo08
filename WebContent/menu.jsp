@@ -9,14 +9,14 @@
 <body>
 <div class="menu" align="center">
 		<ul>
-			<li><a href="index.html">Home</a></li>
+			<li><a href="index.jsp">Home</a></li>
             <li><a >Brasil</a>
             	<ul>
-                	<li><a href="buscaBrasil">Pesquise</a></li>
-                    <li><a href="">Compare</a></li>
+                	<li><a href="buscaBrasil?pg=simples">Pesquise</a></li>
+                    <li><a href="buscaBrasil?pg=composto">Compare</a></li>
                 </ul>
             </li>
-            <li><a href="">Estados</a>
+            <li><a >Estados</a>
             	<ul>
                 	<li><a href="BuscaUF">Pesquise</a></li>
                     <li><a href="">Compare</a></li>

@@ -21,8 +21,7 @@
 <jsp:include page="menu.jsp"></jsp:include>
 
 <div class="conteudo">
-
-<form action="buscaBrasil" method="post"> 
+<form action="buscaBrasil?cmd=busca" method="post"> 
 <br><br><br>
 <select name="ano1">
 <c:forEach var ="list" items="${listaDatas}" >
@@ -33,9 +32,7 @@
 <br><br>
 <input  type="submit"  value="Pesquiser"  /> 
    </form>
-
 <br>
-
 <c:forEach var ="b"  items="${listaBrasilAbsolutoAno1}" >
 REGIÃO  :  ${b.regiao}  ;
 VALOR   :  ${b.valor}  ;
