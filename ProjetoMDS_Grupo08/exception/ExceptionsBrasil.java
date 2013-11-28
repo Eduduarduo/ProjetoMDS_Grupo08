@@ -32,8 +32,6 @@ public class ExceptionsBrasil {
 			{return true;}
 		if (verificaParamentroAno(ano1) == false)
 		{	return false; }
-		if (verificaParamentroAno(ano2) == false)
-			{return false;}
 		return true;
 	}
 
@@ -43,7 +41,7 @@ public class ExceptionsBrasil {
 		Brasil brasil = new Brasil();
 		if (listaBrasil.isEmpty() == true)
 			return false;
-		if (listaBrasil.getClass() == brasil.getClass())
+		if (listaBrasil.equals(brasil))
 			return false;
 		return true;
 	}
