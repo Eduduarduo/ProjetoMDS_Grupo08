@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.brasil{
+	margin-top:60px;
+	}
+#botao{
+	margin-left:5px;
+	width:100px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+ 	
+}	
+
+#botao:hover  {
+	
+	margin-left:5px;
+	width:100px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	
+	}	
+	
+	
+#label{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	
+	}	
+.opcao{
+	
+
+	float:left;
+	margin-left:50px;
+	
+	
+	
+	}	
