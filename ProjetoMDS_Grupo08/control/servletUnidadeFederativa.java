@@ -2,14 +2,20 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import model.UnidadeFederativa;
 import dao.UnidadeFederativaDao;
-import exception.ExceptionsServlets;
+import exception.ExceptionsUF;
 
 @WebServlet("/servletUnidadeFederativa")
 public class ServletUnidadeFederativa extends HttpServlet {
@@ -19,7 +25,7 @@ public class ServletUnidadeFederativa extends HttpServlet {
 	RequestDispatcher rd;
 	HttpServletRequest request;
 	HttpServletResponse response;
-	ExceptionsServlets exceptions;
+	ExceptionsUF exception;
 
 	public ServletUnidadeFederativa() {
 		super();
@@ -27,209 +33,206 @@ public class ServletUnidadeFederativa extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		try {
+			switch (request.getParameter("sg")) {
+			case "simples":
+				getAnos(unidadeFederativaDao, request);
+				rd = request.getRequestDispatcher("ufBusca.jsp");
+				rd.forward(request, response);
+				break;
+			case "ano":
+				getAnos(unidadeFederativaDao, request);
+				rd = request.getRequestDispatcher("ufComparacaoAno.jsp");
+				rd.forward(request, response);
+				break;
+			case "uf":
+				getAnos(unidadeFederativaDao, request);
+				rd = request.getRequestDispatcher("ufComparacaoUF.jsp");
+				rd.forward(request, response);
+				break;
+			default:
+				rd = request.getRequestDispatcher("erro.jsp");
+				rd.forward(request, response);
+				break;
+			}
+		} catch (Exception e) {
+			rd = request.getRequestDispatcher("erro.jsp");
+			rd.forward(request, response);
+		}
+
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		int ano1 = Integer.parseInt(request.getParameter("ano1"));
+		int ano2 = Integer.parseInt(request.getParameter("ano2"));
+		String uf1 = request.getParameter("uf1");
+		String uf2 = request.getParameter("uf2");
+
+		try {
+			switch (request.getParameter("cmd")) {
+			case "busca":
+				buscaUnidadeFederativa(ano1, uf1, unidadeFederativaDao,
+						exception, request);
+				rd = request.getRequestDispatcher("brasilBusca.jsp");
+				rd.forward(request, response);
+				break;
+			case "ComparacaoAno":
+				ComparacaoUnidadeFederativaPorAno(ano1, ano2, uf1, request);
+				rd = request.getRequestDispatcher("brasilComparacaoAno.jsp");
+				rd.forward(request, response);
+				break;
+			case "ComparacaoUF":
+				ComparacaoPorUF(ano1, uf1, uf2, unidadeFederativaDao, request);
+				rd = request.getRequestDispatcher("brasilComparacaoUF.jsp");
+				rd.forward(request, response);
+			default:
+				rd = request.getRequestDispatcher("erro.jsp");
+				rd.forward(request, response);
+				break;
+			}
+		} catch (Exception e) {
+			rd = request.getRequestDispatcher("erro.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	public void buscaUnidadeFederativa(int ano, String uf,
-			UnidadeFederativaDao unidadeFederativaDao, RequestDispatcher rd,
-			HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
+			UnidadeFederativaDao unidadeFederativaDao, ExceptionsUF exception,
+			HttpServletRequest request) throws ServletException, IOException,
+			SQLException {
 
-		this.rd = rd;
 		this.unidadeFederativaDao = unidadeFederativaDao;
 		this.request = request;
-		this.response = response;
-		this.exceptions = new ExceptionsServlets();
 
-		boolean validacao = this.exceptions.validarListasUF(
-				this.unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano,uf),
-				this.unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano, uf));
+		if (exception.verificaParamentroUF(uf) == true) {
+			if (exception.validaListaUFTipoAbsoluto(this.unidadeFederativaDao
+					.buscaUnidadeFederativaAbsoluto(ano, uf)) == true) {
+				if (exception
+						.validaListaUFTipoRelativo(this.unidadeFederativaDao
+								.buscaUnidadeFederativaRelativo(ano, uf)) == true) {
+					request.setAttribute("listaUFAbsoluto1",
+							this.unidadeFederativaDao
+									.buscaUnidadeFederativaAbsoluto(ano, uf));
+					request.setAttribute("listaUFRelativo1",
+							this.unidadeFederativaDao
+									.buscaUnidadeFederativaRelativo(ano, uf));
+				
+					//Obtendo somente uma lista
+					List<UnidadeFederativa> lista = null;
+					lista.addAll(this.unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano, uf));
+					lista.addAll(this.unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano, uf));
+					
+					//Passando a lista para o Json
+					Gson gson = new Gson();
+					String resp = gson.toJson(lista);
 
-		if (validacao == true) {
+					response.getWriter().write(resp);
+					response.getWriter().flush();
+					response.getWriter().close();
 
-			request.setAttribute("listaUFAbsoluto1", this.unidadeFederativaDao
-					.buscaUnidadeFederativaAbsoluto(ano, uf));
-			request.setAttribute("listaUFRelativo1", this.unidadeFederativaDao
-					.buscaUnidadeFederativaRelativo(ano, uf));
-			this.rd = this.request.getRequestDispatcher("brasil.jsp");
-			this.rd.forward(this.request, this.response);
-		} else {
-			carregarPaginaErro();
+				} else {rd = request.getRequestDispatcher("erro.jsp");
+				rd.forward(request, response);
+				}
+			} else {rd = request.getRequestDispatcher("erro.jsp");
+			rd.forward(request, response);
+			}
+		} else {rd = request.getRequestDispatcher("erro.jsp");
+		rd.forward(request, response);
 		}
 	}
 
-	public void ComparacaoUnidadeFederativaPorAno(int ano1, int ano2,String uf,
-			UnidadeFederativaDao unidadeFederativaDao, RequestDispatcher rd,
-			HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
-		{
-			this.rd = rd;
-			this.unidadeFederativaDao = unidadeFederativaDao;
-			this.request = request;
-			this.response = response;
-			this.exceptions = new ExceptionsServlets();
+	public void ComparacaoUnidadeFederativaPorAno(int ano1, int ano2,
+			String uf, HttpServletRequest request) throws ServletException,
+			IOException, SQLException {
+		this.unidadeFederativaDao = new UnidadeFederativaDao();
+		this.request = request;
 
-			
-			boolean validacao = this.exceptions.validarListasUF(
-					this.unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano1,uf),
-					this.unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano1, uf));
-			
-			boolean comparacao = this.exceptions.validarListasUF(
-					this.unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano2,uf),
-					this.unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano2, uf));
+		this.request.setAttribute("listaUFAbsoluto1", this.unidadeFederativaDao
+				.buscaUnidadeFederativaAbsoluto(ano1, uf));
+		this.request.setAttribute("listaUFRelativo1", this.unidadeFederativaDao
+				.buscaUnidadeFederativaRelativo(ano1, uf));
+		this.request.setAttribute("listaUFAbsoluto2", this.unidadeFederativaDao
+				.buscaUnidadeFederativaAbsoluto(ano2, uf));
+		this.request.setAttribute("listaUFRelativo", this.unidadeFederativaDao
+				.buscaUnidadeFederativaRelativo(ano2, uf));
+		
+		//Criando uma lista só
+		List<UnidadeFederativa> lista = null;
+		lista.addAll(this.unidadeFederativaDao
+				.buscaUnidadeFederativaAbsoluto(ano1, uf));
+		lista.addAll(this.unidadeFederativaDao
+				.buscaUnidadeFederativaRelativo(ano1, uf));
+		lista.addAll(this.unidadeFederativaDao
+				.buscaUnidadeFederativaAbsoluto(ano2, uf));
+		lista.addAll(this.unidadeFederativaDao
+				.buscaUnidadeFederativaRelativo(ano2, uf));
+		
+		//Passando a lista para o Json
+		Gson gson = new Gson();
+		String resp = gson.toJson(lista);
 
-			
-			
-			if (validacao == true && comparacao == true) {
+		response.getWriter().write(resp);
+		response.getWriter().flush();
+		response.getWriter().close();
 	
-				this.request.setAttribute("listaUFAbsoluto1",
-						this.unidadeFederativaDao
-								.buscaUnidadeFederativaAbsoluto(ano1,uf));
-				this.request.setAttribute("listaUFRelativo1",
-						this.unidadeFederativaDao
-								.buscaUnidadeFederativaRelativo(ano1,uf));
-				this.request.setAttribute("listaUFAbsoluto2",
-						this.unidadeFederativaDao
-								.buscaUnidadeFederativaAbsoluto(ano2,uf));
-				this.request.setAttribute("listaUFRelativo",
-						this.unidadeFederativaDao
-								.buscaUnidadeFederativaRelativo(ano2,uf));
-				this.rd = this.request.getRequestDispatcher("brasil.jsp");
-				this.rd.forward(request, response);
-			} else {
-				carregarPaginaErro();
-			}
-		}
 	}
 
 	public void getAnos(UnidadeFederativaDao unidadeFederativaDao,
-			RequestDispatcher rd, HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException,
+			HttpServletRequest request) throws ServletException, IOException,
 			SQLException {
 
-		this.rd = rd;
-		this.unidadeFederativaDao = unidadeFederativaDao;
-		this.request = request;
-		this.response = response;
-
-		if (this.unidadeFederativaDao.getDatasUnidadeFederativa() != null) {
-			this.request.setAttribute("listaDatas",
-					this.unidadeFederativaDao.getDatasUnidadeFederativa());
-			this.rd = this.request
-					.getRequestDispatcher("unidadeFederativa.jsp");
-		} else {
-			String msg = "Mensagem de errro";
-			this.request.setAttribute("msg", msg);
-			this.rd = this.request.getRequestDispatcher("erro.jsp");
-		}
+		request.setAttribute("listaDatas",
+				unidadeFederativaDao.getAnosUnidadeFederativa());
 	}
-		
-	public void getUnidadesFederativas(UnidadeFederativaDao unidadeFederativaDao,
-			RequestDispatcher rd, HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException,
+
+	public void getUnidadesFederativas(
+			UnidadeFederativaDao unidadeFederativaDao,
+			HttpServletRequest request) throws ServletException, IOException,
 			SQLException {
 
-		this.rd = rd;
-		this.unidadeFederativaDao = unidadeFederativaDao;
-		this.request = request;
-		this.response = response;
-
-		if (this.unidadeFederativaDao.getUnidadeFederativa() != null) {
-			this.request.setAttribute("listaDatas",
-					this.unidadeFederativaDao.getDatasUnidadeFederativa());
-			this.rd = this.request
-					.getRequestDispatcher("unidadeFederativa.jsp");
-		} else {
-			String msg = "Mensagem de errro";
-			this.request.setAttribute("msg", msg);
-			this.rd = this.request.getRequestDispatcher("erro.jsp");
-		}
+		request.setAttribute("listaDatas",
+				unidadeFederativaDao.getUnidadeFederativa());
 	}
 
+	public void ComparacaoPorUF(int ano1, String uf1, String uf2,
+			UnidadeFederativaDao unidadeFederativaDao,
+			HttpServletRequest request) throws ServletException, IOException,
+			SQLException {
+
+		request.setAttribute("listaUFAbsoluto1",
+				unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano1, uf1));
+		request.setAttribute("listaUFRelativo1",
+				unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano1, uf1));
+		request.setAttribute("listaUFAbsoluto2",
+				unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano1, uf2));
+		request.setAttribute("listaUFRelativo",
+				unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano1, uf2));
 	
+		List<UnidadeFederativa> lista = null;
+		//Montando somente uma lista
+		lista.addAll(unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano1, uf1));
+		lista.addAll(unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano1, uf1));
+		lista.addAll(unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano1, uf2));
+		lista.addAll(unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano1, uf2));
 	
-	
-	
-	
-	public void ComparacaoPorUF(int ano1,String uf1,String uf2,
-			UnidadeFederativaDao unidadeFederativaDao, RequestDispatcher rd,
-			HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
-		{
-			this.rd = rd;
-			this.unidadeFederativaDao = unidadeFederativaDao;
-			this.request = request;
-			this.response = response;
-			this.exceptions = new ExceptionsServlets();
+		Gson gson = new Gson();
+		String resp = gson.toJson(lista);
+		response.getWriter().write(resp);
+		response.getWriter().flush();
+		response.getWriter().close();
 
 			
-			boolean validacao = this.exceptions.validarListasUF(
-					this.unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano1,uf1),
-					this.unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano1, uf1));
-			
-			boolean comparacao = this.exceptions.validarListasUF(
-					this.unidadeFederativaDao.buscaUnidadeFederativaRelativo(ano1,uf2),
-					this.unidadeFederativaDao.buscaUnidadeFederativaAbsoluto(ano1, uf2));
-			
-			if (validacao == true && comparacao == true) {
-	
-				this.request.setAttribute("listaUFAbsoluto1",
-						this.unidadeFederativaDao
-								.buscaUnidadeFederativaAbsoluto(ano1,uf1));
-				this.request.setAttribute("listaUFRelativo1",
-						this.unidadeFederativaDao
-								.buscaUnidadeFederativaRelativo(ano1,uf1));
-				this.request.setAttribute("listaUFAbsoluto2",
-						this.unidadeFederativaDao
-								.buscaUnidadeFederativaAbsoluto(ano1,uf2));
-				this.request.setAttribute("listaUFRelativo",
-						this.unidadeFederativaDao
-								.buscaUnidadeFederativaRelativo(ano1,uf2));
-				this.rd = this.request.getRequestDispatcher("brasil.jsp");
-				this.rd.forward(request, response);
-			} else {
-				carregarPaginaErro();
-			}
-		}
 	}
 
-	
-	
-	
 	public void getAnosComparacaoUnidadeFederativa(int ano,
-			UnidadeFederativaDao unidadeFaderativa, RequestDispatcher rd,
-			HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException {
+			HttpServletRequest request) throws ServletException, IOException,
+			SQLException {
 
-		this.rd = rd;
-		this.unidadeFederativaDao = unidadeFaderativa;
-		this.request = request;
-		this.response = response;
-		this.exceptions = new ExceptionsServlets();
-		if (exceptions.validaAnosListBox(
-				this.unidadeFederativaDao.getDatasComparacaoUnidadeFederativa(ano)) == true) {
-
-			this.request.setAttribute("listaDatasComparacao",
-					this.unidadeFederativaDao
-							.getDatasComparacaoUnidadeFederativa(ano));
-			this.rd = this.request
-					.getRequestDispatcher("unidadesFederativa.jsp");
-
-		} else {
-			carregarPaginaErro();
-		}
-	}
-
-	public void carregarPaginaErro() throws ServletException, IOException {
-
-		String msg = " NÃ³s desculpe ocorreu um erro,prometemos que vamos corrigir <br> "
-				+ "esse problema , tente novamente daqui alguns segundos ";
-		request.setAttribute("msg", msg);
-		rd = request.getRequestDispatcher("/erro.jsp");
-		rd.forward(request, response);
+		request.setAttribute("listaDatasComparacao",
+				unidadeFederativaDao.getAnosComparacaoUnidadeFederativa(ano));
 
 	}
 
