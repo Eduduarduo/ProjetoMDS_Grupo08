@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,17 +9,23 @@ import model.*;
 
 public class RegiaoMetropolitanaTest {
 	
-	RegiaoMetropolitana rm = new RegiaoMetropolitana();
+	RegiaoMetropolitana rm;
+	RegiaoMetropolitana rm2;
 
 	@Before
 	public void setUp() throws Exception {
+		rm = new RegiaoMetropolitana();
+		rm2 = new RegiaoMetropolitana("Sao Paulo", "Coletado", "Relativo", 2001, 12345);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		
+	@Test
+	public void testRegiaoMetropolitana(){
+		assertEquals("Sao Paulo", rm2.getRegiao());
+		assertEquals("Coletado", rm2.getOpcao());
+		assertEquals("Relativo", rm2.getTipo());
+		assertEquals(2001, rm2.getAno());
+		assertEquals(12345, rm2.getValor());
 	}
-	
 	@Test
 	public void testRegiao(){
 		assertNull(rm.getRegiao());
