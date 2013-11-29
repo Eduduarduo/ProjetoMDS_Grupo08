@@ -7,17 +7,22 @@ import org.junit.*;
 import model.*;
 
 public class DadoTest {
-	
-	Dado dados = new Dado();
+	Dado dados;
+	Dado dados2;
 	
 	@Before
 	public void setUp(){
-		
+		dados = new Dado();
+		dados2 = new Dado("Brasil", "Coletado", "Relativo", 1981, 84122);
 	}
 	
-	@After
-	public void tearDown(){
-		
+	@Test 
+	public void testDado(){
+		assertEquals("Brasil", dados2.getRegiao());
+		assertEquals("Coletado", dados2.getOpcao());
+		assertEquals("Relativo", dados2.getOpcao());
+		assertEquals(1981, dados2.getAno());
+		assertEquals(84122, dados2.getValor());
 	}
 	
 	@Test
@@ -103,7 +108,5 @@ public class DadoTest {
 		assertNotEquals(dados.getValor(), 4321.00);
 		assertNotNull(dados.getValor());
 	}
-
-	
 }
 
