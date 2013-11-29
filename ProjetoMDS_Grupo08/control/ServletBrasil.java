@@ -2,12 +2,17 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Brasil;
+import model.UnidadeFederativa;
 import dao.BrasilDao;
 import exception.ExceptionsBrasil;
 
@@ -48,7 +53,6 @@ public class ServletBrasil extends HttpServlet {
 			rd = request.getRequestDispatcher("erro.jsp");
 			rd.forward(request, response);
 		}
-		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request,
@@ -65,7 +69,6 @@ public class ServletBrasil extends HttpServlet {
 				buscaBrasilPorAno(ano, brasilDao, request, exception);
 				getAnos(this.brasilDao, request);
 				getAnosComparacao(ano, brasilDao, request);
-				comparacaoPorAno(ano, ano2, brasilDao, request, exception);
 				rd = request.getRequestDispatcher("brasilBusca.jsp");
 				break;
 			case "Comparacao":
@@ -83,7 +86,6 @@ public class ServletBrasil extends HttpServlet {
 			rd = request.getRequestDispatcher("erro.jsp");
 			rd.forward(request, response);
 		}
-		rd.forward(request, response);
 	}
 	
 	public void buscaBrasilPorAno(int ano, BrasilDao brasildao,
@@ -98,10 +100,24 @@ public class ServletBrasil extends HttpServlet {
 			if (this.exception.validaGerarGrafico(
 					this.brasilDao.buscaBrasilAbsoluto(ano),
 					this.brasilDao.buscaBrasilRelativo(ano)) == true) {
+				
+				
 				request.setAttribute("listaBrasilAbsolutoAno1",
 						this.brasilDao.buscaBrasilAbsoluto(ano));
 				request.setAttribute("listaBrasilRelativoAno1",
 						this.brasilDao.buscaBrasilRelativo(ano));
+			
+				List<Brasil> lista;
+				
+				lista.addAll(this.brasilDao.buscaBrasilAbsoluto(ano));
+				lista.addAll(this.brasilDao.buscaBrasilRelativo(ano));
+				
+				Gson gson = new Gson();
+				String resp = gson.toJson(lista);
+				response.getWriter().write(resp);
+				response.getWriter().flush();
+				response.getWriter().close();
+			
 			}
 			rd = request.getRequestDispatcher("erro.jsp");
 		}
@@ -129,6 +145,20 @@ public class ServletBrasil extends HttpServlet {
 						this.brasilDao.buscaBrasilAbsoluto(ano2));
 				request.setAttribute("listaBrasilRelativoAno2",
 						this.brasilDao.buscaBrasilRelativo(ano2));
+			
+				List<Brasil> lista;
+				lista.addAll(this.brasilDao.buscaBrasilAbsoluto(ano1));
+				lista.addAll(this.brasilDao.buscaBrasilRelativo(ano1));
+				lista.addAll(this.brasilDao.buscaBrasilAbsoluto(ano2));
+				lista.addAll(this.brasilDao.buscaBrasilRelativo(ano2));
+				
+				Gson gson = new Gson();
+				String resp = gson.toJson(lista);
+				response.getWriter().write(resp);
+				response.getWriter().flush();
+				response.getWriter().close();
+			
+			
 			} else
 				rd = request.getRequestDispatcher("erro.jsp");
 		} else
