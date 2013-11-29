@@ -2,27 +2,40 @@ package test;
 
 import static org.junit.Assert.*;
 import org.junit.*;
+
 import model.*;
 
 public class UnidadeFederativaTest {
 
-public UnidadeFederativaTest(){
-
-}
-
-		UnidadeFederativa UF = new UnidadeFederativa();
+	UnidadeFederativa UF;
+	UnidadeFederativa UF2;
+	
+	@Before
+	public void setUp(){
+		UF = new UnidadeFederativa();
+		UF2 = new UnidadeFederativa("Sao Paulo", "Coletado", "Relativo", 2001, 12345);
+	}
+	
+	@Test
+	public void testUnidadeFederativa(){
+		assertEquals("Sao Paulo", UF2.getRegiao());
+		assertEquals("Coletado", UF2.getOpcao());
+		assertEquals("Relativo", UF2.getTipo());
+		assertEquals(2001, UF2.getAno());
+		assertEquals(12345, UF2.getValor());
+	}
         
-		//Testes de Unidade Federativa
-        @Test
-        public void testRegiaoFederativa(){        
-                assertEquals(null, UF.getRegiao());
-                UF.setRegiao("São Paulo");
-                assertEquals("São Paulo", UF.getRegiao());
-                UF.setRegiao("Rio de Janeiro");
-                assertEquals("Rio de Janeiro", UF.getRegiao());
-                UF.setRegiao("Teste");
-                assertEquals("Teste", UF.getRegiao());
-        }
+	//Testes de Unidade Federativa
+    @Test
+    public void testRegiaoFederativa(){        
+    	assertEquals(null, UF.getRegiao());
+        UF.setRegiao("Sï¿½o Paulo");
+        assertEquals("Sï¿½o Paulo", UF.getRegiao());
+        UF.setRegiao("Rio de Janeiro");
+        assertEquals("Rio de Janeiro", UF.getRegiao());
+        UF.setRegiao("Teste");
+        assertEquals("Teste", UF.getRegiao());
+    }
         
         @Test
         public void testValor(){
