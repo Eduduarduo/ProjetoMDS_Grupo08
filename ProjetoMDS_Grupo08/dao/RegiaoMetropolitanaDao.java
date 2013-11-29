@@ -77,27 +77,26 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		return regioes;
 	}
 
-	public List<Integer> getAnosRegiaoMetropolitana() throws SQLException {
+	public List<RegiaoMetropolitana> getAnosRegiaoMetropolitana() throws SQLException {
 
-		List<Integer> datasRM = new ArrayList<Integer>();
+		List<RegiaoMetropolitana> datasRM = new ArrayList<RegiaoMetropolitana>();
 		this.conexao = new ConnectionFactory().getConnection();
 
-		String query = "select distinct ano from dldregiaoabsoluto "
-				+ "UNION select distinct ano from dldregiaorelativo";
+		String query = "select ano from dldregiaoabsoluto UNION select ano from dldregiaorelativo";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		ResultSet rs = stm.executeQuery();
 
 		while (rs.next()) {
-			int dataRM;
-			dataRM = rs.getInt("ano");
-
-			datasRM.add(dataRM);
+			RegiaoMetropolitana regiao = new RegiaoMetropolitana();
+			regiao.setAno(rs.getInt("ano"));
+			datasRM.add(regiao);
 		}
 		stm.close();
 		conexao.close();
 		return datasRM;
 	}
 
+	//provavelmente será excluido
 	public List<Integer> getAnosComparacaoRegiaoMetropolitana(int ano)
 			throws SQLException {
 
@@ -123,9 +122,9 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		return datasRM;
 	}
 
-	public List<String> getRegioesRegiaoMetropolitana() throws SQLException {
+	public List<RegiaoMetropolitana> getRegioesRegiaoMetropolitana() throws SQLException {
 
-		List<String> regioes = new ArrayList<String>();
+		List<RegiaoMetropolitana> regioes = new ArrayList<RegiaoMetropolitana>();
 		this.conexao = new ConnectionFactory().getConnection();
 
 		String query = "select distinct regiao from dldregiaoabsoluto "
@@ -135,9 +134,9 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		ResultSet rs = stm.executeQuery();
 
 		while (rs.next()) {
-			String regiaoRM;
-			regiaoRM = rs.getString("regiao");
-			regioes.add(regiaoRM);
+			RegiaoMetropolitana regiao = new RegiaoMetropolitana();
+			regiao.setRegiao(rs.getString("regiao"));
+			regioes.add(regiao);
 		}
 		stm.close();
 		conexao.close();
@@ -145,6 +144,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 
 	}
 
+	//provavelmente será excluido
 	public List<String> getRegioesComparacaoRegiaoMetropolitana(String regiao)
 			throws SQLException {
 
