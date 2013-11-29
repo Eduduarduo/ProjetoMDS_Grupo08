@@ -36,56 +36,44 @@ public class ServletRegiaoMetropolitanaTest{
 	@Test 
 	public void testBuscaRegiaoMetropolitana() throws ServletException, IOException, SQLException{
 		replay(request, response, rd);
-		servlet.buscaRegiaoMetropolitana(regiao, 2001, regiaoDao, request);
+		servlet.buscaRegiaoMetropolitana(regiao, 2001, request, response);
 		verify(request, response, rd);	
 	} 
 
 	@Test
-	public void testBucaRegiaoMetropolitanaPorAno() throws ServletException, IOException{
+	public void testBucaRegiaoMetropolitanaPorAno() throws ServletException, IOException, SQLException{
 		int ano2 = 2002;
 		replay(request, response, rd);
-		servlet.ComparacaoRegiaoMetropolitanaPorAno(regiao, ano, ano2, regiaoDao, request);
+		servlet.ComparacaoRegiaoMetropolitanaPorAno(regiao, ano, ano2, request, response);
 		verify(request, response, rd);	
 	}
 	
 	@Test
-	public void testBucaRegiaoMetropolitanaPorRegiao() throws ServletException, IOException{
+	public void testBucaRegiaoMetropolitanaPorRegiao() throws ServletException, IOException, SQLException{
 		String regiao2 = "Fortaleza - CE";
 		replay(request, response, rd);
-		servlet.ComparacaoRegiaoMetropolitanaPorRegiao(regiao, ano, regiao2, regiaoDao, request);
+		servlet.ComparacaoRegiaoMetropolitanaPorRegiao(regiao, ano, regiao2, request, response);
 		verify(request, response, rd);	
 	}
 	
 	@Test
-	public void testGetAnosRegiaoMetropolitana() throws ServletException, IOException{
+	public void testGetAnosRegiaoMetropolitana() throws ServletException, IOException, SQLException{
 
 		replay(request, response, rd);
-		servlet.getAnosRegiaoMetropolitana(regiaoDao, rd, request, response);
+		servlet.getAnosRegiaoMetropolitana(request);
+		verify(request, response, rd);	
+	}
+
+	
+	@Test
+	public void testgetRegioesRegiaoMetropolitana() throws ServletException, IOException, SQLException{
+
+		replay(request, response, rd);
+		servlet.getRegioesRegiaoMetropolitana(request);
 		verify(request, response, rd);	
 	}
 	
-	@Test
-	public void testGetAnosComparacaoRegiaoMetropolitana() throws ServletException, IOException{
+	//verificar se as funções getAnosComparação e getRegiaoComparação vão ser usadas
 
-		replay(request, response, rd);
-		servlet.getAnosComparacaoRegiaoMetropolinata(ano, regiaoDao, rd, request, response);
-		verify(request, response, rd);	
-	}
-	
-	@Test
-	public void testgetRegioesRegiaoMetropolitana() throws ServletException, IOException{
-
-		replay(request, response, rd);
-		servlet.getRegioesRegiaoMetropolitana(regiaoDao, rd, request, response);
-		verify(request, response, rd);	
-	}
-	
-	@Test
-	public void testgetRegioesComparacaoRegiaoMetropolinata() throws ServletException, IOException{
-
-		replay(request, response, rd);
-		servlet.getRegioesComparacaoRegiaoMetropolinata(regiao, regiaoDao, rd, request, response);
-		verify(request, response, rd);	
-	}
 	
 }
