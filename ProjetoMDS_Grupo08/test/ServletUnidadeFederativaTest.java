@@ -15,7 +15,7 @@ import control.ServletUnidadeFederativa;
 import dao.UnidadeFederativaDao;
 import exception.ExceptionsUF;
 
-public class TesteServletUnidadeFederativa {
+public class ServletUnidadeFederativaTest {
 
 	private HttpServletRequest request = mock(HttpServletRequest.class);
 	private ExceptionsUF exception ; //= mock(ExceptionsBrasil.class); 
