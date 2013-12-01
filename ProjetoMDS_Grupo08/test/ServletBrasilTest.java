@@ -13,7 +13,7 @@ import control.ServletBrasil;
 import dao.BrasilDao;
 import exception.ExceptionsBrasil;
 
-public class TesteServletBrasil {
+public class ServletBrasilTest {
 
 	private HttpServletRequest request = mock(HttpServletRequest.class);
 	private ExceptionsBrasil exception ; //= mock(ExceptionsBrasil.class); 
