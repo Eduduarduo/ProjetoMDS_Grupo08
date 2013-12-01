@@ -1,34 +1,53 @@
 package test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import org.junit.Test;
 
 import dao.ConnectionFactory;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.mysql.jdbc.Statement;
-
 public class ConnectionFactoryTest {
 
-	ConnectionFactory connection;
-   
-	@Before
-    public void setUp() throws Exception {
-            connection = new ConnectionFactory();
-    }
+	ConnectionFactory conexao ;
+	
+	@Test
+	public void testGetConnection() {
+		conexao = new ConnectionFactory();
+		assertNotNull(conexao);
+	}
 
-    //Testando a instância
+	@Test
+	public void testGetConnectionContrutor() {
+		assertNotNull(new ConnectionFactory());
+	}
+
+	@Test
+	public void testGetConnectionEquals() {
+		assertNotSame(new ConnectionFactory(), conexao);
+	}
+	
     @Test
-    public void test() {
-            assertNotNull(connection);
-    } 
-    
-    @Test
-    public void test1() {            
-           assertNotNull(connection.getConnection());
+    public void testGetConnectionNotNull() {
+		conexao = new ConnectionFactory();
+        assertNotNull(conexao.getConnection());
     }
-    
+	
+	@Test
+	public void testGetConnectionNotNullMock() throws SQLException {
+		conexao = mock(ConnectionFactory.class);
+		doCallRealMethod().when(conexao).getConnection();
+		assertNotNull(conexao);
+	}
+	
+	@Test
+	public void testGetConnectionConnection() throws SQLException {
+		conexao = mock(ConnectionFactory.class);
+		when(conexao.getConnection()).thenReturn(DriverManager.getConnection("jdbc:mysql://localhost/dld3","root","root"));
+		assertNotNull(conexao);
+	}
+		
 }
