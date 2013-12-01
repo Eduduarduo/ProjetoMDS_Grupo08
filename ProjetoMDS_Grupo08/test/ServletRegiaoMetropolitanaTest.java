@@ -33,6 +33,12 @@ public class ServletRegiaoMetropolitanaTest{
 		ano = 2001;
 	}
 	
+	@Test
+	public void testServletRegiaoMetropolitana(){  
+		ServletRegiaoMetropolitana servletRegiaoMetropolitanaLocal = new ServletRegiaoMetropolitana();
+		assertEquals(servletRegiaoMetropolitanaLocal.getClass(), ServletRegiaoMetropolitana.class); 
+	}
+	
 	@Test 
 	public void testBuscaRegiaoMetropolitana() throws ServletException, IOException, SQLException{
 		replay(request, response, rd);
