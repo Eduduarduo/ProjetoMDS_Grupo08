@@ -14,7 +14,7 @@ h1{
 	color:#009900;
 }
 
-p{
+p.texto{
 	text-indent: 3em;
 	font-size: large;
 	font-family: inherit;
