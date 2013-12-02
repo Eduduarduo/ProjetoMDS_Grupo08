@@ -109,33 +109,33 @@
 <body>
 <div id="mapa">
     <ul id="map">
-        <li id="crs" estado="rs"><a href="#rs" id="rs" title="RS"><img src="images/img/null.gif" alt="RS" /></a></li>
-        <li id="csc" estado="sc"><a href="#sc" id="sc" title="SC"><img src="images/img/null.gif" alt="SC" /></a></li>
-        <li id="cpr" estado="pr"><a href="#pr" id="pr" title="PR"><img src="images/img/null.gif" alt="PR" /></a></li>
-        <li id="csp" estado="sp"><a href="#sp" id="sp" title="SP"><img src="images/img/null.gif" alt="SP" /></a></li>
-        <li id="cms" estado="ms"><a href="#ms" id="ms" title="MS"><img src="images/img/null.gif" alt="MS" /></a></li>
-        <li id="crj" estado="rj"><a href="#rj" id="rj" title="RJ"><img src="images/img/null.gif" alt="RJ" /></a></li>
-        <li id="ces" estado="es"><a href="#es" id="es" title="ES"><img src="images/img/null.gif" alt="ES" /></a></li>
-        <li id="cmg" estado="mg"><a href="#mg" id="mg" title="MG"><img src="images/img/null.gif" alt="MG" /></a></li>
-        <li id="cgo" estado="go"><a href="#go" id="go" title="GO"><img src="images/img/null.gif" alt="GO" /></a></li>
-        <li id="cdf" estado="df"><a href="#df" id="df" title="DF"><img src="images/img/null.gif" alt="DF" /></a></li>
-        <li id="cba" estado="ba"><a href="#ba" id="ba" title="BA"><img src="images/img/null.gif" alt="BA" /></a></li>
-        <li id="cmt" estado="mt"><a href="#mt" id="mt" title="MT"><img src="images/img/null.gif" alt="MT" /></a></li>
-        <li id="cro" estado="ro"><a href="#ro" id="ro" title="RO"><img src="images/img/null.gif" alt="RO" /></a></li>
-        <li id="cac" estado="ac"><a href="#ac" id="ac" title="AC"><img src="images/img/null.gif" alt="AC" /></a></li>
-        <li id="cam" estado="am"><a href="#am" id="am" title="AM"><img src="images/img/null.gif" alt="AM" /></a></li>
-        <li id="crr" estado="rr"><a href="#rr" id="rr" title="RR"><img src="images/img/null.gif" alt="RR" /></a></li>
-        <li id="cpa" estado="pa"><a href="#pa" id="pa" title="PA"><img src="images/img/null.gif" alt="PA" /></a></li>
-        <li id="cap" estado="ap"><a href="#ap" id="ap" title="AP"><img src="images/img/null.gif" alt="AP" /></a></li>
-        <li id="cma" estado="ma"><a href="#ma" id="ma" title="MA"><img src="images/img/null.gif" alt="MA" /></a></li>
-        <li id="cto" estado="to"><a href="#to" id="to" title="TO"><img src="images/img/null.gif" alt="TO" /></a></li>
-        <li id="cse" estado="se"><a href="#se" id="se" title="SE"><img src="images/img/null.gif" alt="SE" /></a></li>
-        <li id="cal" estado="al"><a href="#al" id="al" title="AL"><img src="images/img/null.gif" alt="AL" /></a></li>
-        <li id="cpe" estado="pe"><a href="#pe" id="pe" title="PE"><img src="images/img/null.gif" alt="PE" /></a></li>
-        <li id="cpb" estado="pb"><a href="#pb" id="pb" title="PB"><img src="images/img/null.gif" alt="PB" /></a></li>
-        <li id="crn" estado="rn"><a href="#rn" id="rn" title="RN"><img src="images/img/null.gif" alt="RN" /></a></li>
-        <li id="cce" estado="ce"><a href="#ce" id="ce" title="CE"><img src="images/img/null.gif" alt="CE" /></a></li>
-        <li id="cpi" estado="pi"><a href="#pi" id="pi" title="PI"><img src="images/img/null.gif" alt="PI" /></a></li>
+        <li id="crs" estado="rs"><a href="buscaUf?pg=simples" id="rs" title="RS"><img src="images/img/null.gif" alt="RS" /></a></li>
+        <li id="csc" estado="sc"><a href="buscaUf?pg=simples" id="sc" title="SC"><img src="images/img/null.gif" alt="SC" /></a></li>
+        <li id="cpr" estado="pr"><a href="buscaUf?pg=simples" id="pr" title="PR"><img src="images/img/null.gif" alt="PR" /></a></li>
+        <li id="csp" estado="sp"><a href="buscaUf?pg=simples" id="sp" title="SP"><img src="images/img/null.gif" alt="SP" /></a></li>
+        <li id="cms" estado="ms"><a href="buscaUf?pg=simples" id="ms" title="MS"><img src="images/img/null.gif" alt="MS" /></a></li>
+        <li id="crj" estado="rj"><a href="buscaUf?pg=simples" id="rj" title="RJ"><img src="images/img/null.gif" alt="RJ" /></a></li>
+        <li id="ces" estado="es"><a href="buscaUf?pg=simples" id="es" title="ES"><img src="images/img/null.gif" alt="ES" /></a></li>
+        <li id="cmg" estado="mg"><a href="buscaUf?pg=simples" id="mg" title="MG"><img src="images/img/null.gif" alt="MG" /></a></li>
+        <li id="cgo" estado="go"><a href="buscaUf?pg=simples" id="go" title="GO"><img src="images/img/null.gif" alt="GO" /></a></li>
+        <li id="cdf" estado="df"><a href="buscaUf?pg=simples" id="df" title="DF"><img src="images/img/null.gif" alt="DF" /></a></li>
+        <li id="cba" estado="ba"><a href="buscaUf?pg=simples" id="ba" title="BA"><img src="images/img/null.gif" alt="BA" /></a></li>
+        <li id="cmt" estado="mt"><a href="buscaUf?pg=simples" id="mt" title="MT"><img src="images/img/null.gif" alt="MT" /></a></li>
+        <li id="cro" estado="ro"><a href="buscaUf?pg=simples" id="ro" title="RO"><img src="images/img/null.gif" alt="RO" /></a></li>
+        <li id="cac" estado="ac"><a href="buscaUf?pg=simples" id="ac" title="AC"><img src="images/img/null.gif" alt="AC" /></a></li>
+        <li id="cam" estado="am"><a href="buscaUf?pg=simples" id="am" title="AM"><img src="images/img/null.gif" alt="AM" /></a></li>
+        <li id="crr" estado="rr"><a href="buscaUf?pg=simples" id="rr" title="RR"><img src="images/img/null.gif" alt="RR" /></a></li>
+        <li id="cpa" estado="pa"><a href="buscaUf?pg=simples" id="pa" title="PA"><img src="images/img/null.gif" alt="PA" /></a></li>
+        <li id="cap" estado="ap"><a href="buscaUf?pg=simples" id="ap" title="AP"><img src="images/img/null.gif" alt="AP" /></a></li>
+        <li id="cma" estado="ma"><a href="buscaUf?pg=simples" id="ma" title="MA"><img src="images/img/null.gif" alt="MA" /></a></li>
+        <li id="cto" estado="to"><a href="buscaUf?pg=simples" id="to" title="TO"><img src="images/img/null.gif" alt="TO" /></a></li>
+        <li id="cse" estado="se"><a href="buscaUf?pg=simples" id="se" title="SE"><img src="images/img/null.gif" alt="SE" /></a></li>
+        <li id="cal" estado="al"><a href="buscaUf?pg=simples" id="al" title="AL"><img src="images/img/null.gif" alt="AL" /></a></li>
+        <li id="cpe" estado="pe"><a href="buscaUf?pg=simples" id="pe" title="PE"><img src="images/img/null.gif" alt="PE" /></a></li>
+        <li id="cpb" estado="pb"><a href="buscaUf?pg=simples" id="pb" title="PB"><img src="images/img/null.gif" alt="PB" /></a></li>
+        <li id="crn" estado="rn"><a href="buscaUf?pg=simples" id="rn" title="RN"><img src="images/img/null.gif" alt="RN" /></a></li>
+        <li id="cce" estado="ce"><a href="buscaUf?pg=simples" id="ce" title="CE"><img src="images/img/null.gif" alt="CE" /></a></li>
+        <li id="cpi" estado="pi"><a href="buscaUf?pg=simples" id="pi" title="PI"><img src="images/img/null.gif" alt="PI" /></a></li>
     </ul>
     </div>
 <br>

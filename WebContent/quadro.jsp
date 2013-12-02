@@ -10,42 +10,42 @@
 
     <div id="sliderFrame">
         <div id="slider">
-            <a href="http://www.menucool.com/jquery-slider" target="_blank">
-                <img src="images/image-slider-1.jpg" alt="Welcome to jQuery Slider" />
-            </a>
-            <a class="lazyImage" href="images/image-slider-2.jpg" title="Como voce pode contribuir">Pure JavaScript</a>
-            <a href="http://www.menucool.com/javascript-image-slider"><img  src ="images/image-slider-3.jpg">Image Slider</a>
-            <a class="lazyImage" href="images/image-slider-4.jpg" title="">Slide 4</a>
+            <a href="coletaSeletiva.jsp">
+                <img src="images/lixeiras.jpg" alt="Participe dessa ideia"/></a>
+            
+            <a href="descarteCorreto.jsp" title="Como voce pode contribuir"> 
+            <img  src="images/descarte-correto.jpg"></a>
+            
+            
+            <a href="empresasVerdes.jsp"><img  src ="images/empresa-verde.jpg"></a>
+            <a class="lazyImage" href="images/simbolo-reciclagem.png" title=""></a>
+       
         </div>
  
         <div id="thumbs">
             <div class="thumb">
-                <div class="frame"><img src="images/thumb1.jpg" /></div>
-                <div class="thumb-content"><p>Coleta Seletiva</p>Por que no Brasil não existe coleta Seletiva?</div>
+                <div class="frame"><img src="images/lixeiras.jpg" /></div>
+                <div class="thumb-content"><p><a href="coletaSeletiva.jsp" >Coleta Seletiva</a></p>Por que no Brasil não existe coleta Seletiva?</div>
                 <div style="clear:both;"></div>
             </div>
             <div class="thumb">
-                <div class="frame"><img src="images/thumb2.jpg" /></div>
-                <div class="thumb-content"><p>Descarte Correto</p>Onde posso descartar meu lixo eletrônico?</div>
+                <div class="frame"><img src="images/descarte-correto.jpg" /></div>
+                <div class="thumb-content"><p><a href="descarteCorreto.jsp">Descarte Correto</a></p><a href="descarteCorreto.jsp">Onde posso descartar meu lixo eletrônico?</a></div>
                 <div style="clear:both;"></div>
             </div>
             <div class="thumb">
-                <div class="frame"><img src="images/thumb3.jpg" /></div>
-                <div class="thumb-content"><p>Empresas Verdes</p>Existem Empresas Verdes? </div>
+                <div class="frame"><img src="images/empresa-verde.jpg" /></div>
+                <div class="thumb-content"><p><a href="empresasVerdes.jsp">Empresas Verdes</a></p><a href="empresasVerdes.jsp">Existem Empresas Verdes? </a></div>
                 <div style="clear:both;"></div>
             </div>
             <div class="thumb">
-                <div class="frame"><img src="images/thumb4.jpg" /></div>
-                <div class="thumb-content"><p>Pensamento Verde</p>Por que a coleta seletiva deve ser implementada?</div>
+                <div class="frame"><img src="images/simbolo-reciclagem.png" /></div>
+                <div class="thumb-content"><p><a href="pensamentoVerde.jsp"> Pensamento Verde</a> </p><a href="pensamentoVerde.jsp"> Por que a coleta seletiva deve ser implementada?</a> </div>
                 <div style="clear:both;"></div>
             </div>
         </div>
         <!--clear above float:left elements. It is required if above #slider is styled as float:left. -->
         <div style="clear:both;height:0;"></div>
     </div>
-
-
-
-
 </body>
 </html>
