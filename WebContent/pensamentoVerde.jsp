@@ -35,7 +35,7 @@
 <br>
 <br>
 
-<p>Segundo o “Atlas de Saneamento 2011”, último estudo divulgado pelo IBGE - Instituto Brasileiro de Geografia e Estatística, <b>a coleta seletiva de lixo avançou no país</b>. A região Sul é onde se encontra o maior número de municípios que realizam coleta seletiva, com 45%.  Já na região Sudeste a proporção é de aproximadamente 40%. Norte, Nordeste e Centro-Oeste estão os piores índices, abaixo de 10%.</p>
+<p class="texto">Segundo o “Atlas de Saneamento 2011”, último estudo divulgado pelo IBGE - Instituto Brasileiro de Geografia e Estatística, <b>a coleta seletiva de lixo avançou no país</b>. A região Sul é onde se encontra o maior número de municípios que realizam coleta seletiva, com 45%.  Já na região Sudeste a proporção é de aproximadamente 40%. Norte, Nordeste e Centro-Oeste estão os piores índices, abaixo de 10%.</p>
 
 <div class="imagem1">
 <img alt="Imagem reciclagem" src="images/lixao.png"/>
@@ -43,20 +43,20 @@
 
 <br>
 <div class="paragrafo2">
-<p>A ausência de coleta seletiva acarreta no <b>surgimento de lixões</b>, o que muitas vezes já se encontram com sua capacidade máxima. De acordo com o estudo, atualmente, cerca de 50% dos municípios destinam o lixo a esses aterros. Mesmo em grandes proporções esse número caiu se comparado em 2000, quando o percentual era de 72,3%.</p>
+<p class="texto">A ausência de coleta seletiva acarreta no <b>surgimento de lixões</b>, o que muitas vezes já se encontram com sua capacidade máxima. De acordo com o estudo, atualmente, cerca de 50% dos municípios destinam o lixo a esses aterros. Mesmo em grandes proporções esse número caiu se comparado em 2000, quando o percentual era de 72,3%.</p>
 </div>
 <br>
 <div class="imagem2">
 <img alt="Imagem reciclagem" src="images/simbolo-reciclagem.png"/>
 </div>
-<p> Reciclagem é primordial para o desenvolvimento sustentável e <b>preservação de recursos naturais</b>. O pontapé inicial é a coleta seletiva. Com ela a vida útil dos aterros sanitários aumenta, gera-se trabalho e renda para catadores de materiais recicláveis e reutilizáveis.</p>
+<p class="texto">Reciclagem é primordial para o desenvolvimento sustentável e <b>preservação de recursos naturais</b>. O pontapé inicial é a coleta seletiva. Com ela a vida útil dos aterros sanitários aumenta, gera-se trabalho e renda para catadores de materiais recicláveis e reutilizáveis.</p>
 
 <br>
-<p>A coleta seletiva também é uma alternativa para sensibilizar as pessoas quanto ao <b>tratamento do lixo produzido</b>. Os dados do estudo indicaram que, no Brasil, os resíduos sólidos urbanos são compostos basicamente por matéria orgânica (51,4%), plástico (13,5%), papel, papelão e tetrapak (13,1%), metais (2,9%), entre outros.</p>
+<p class="texto">A coleta seletiva também é uma alternativa para sensibilizar as pessoas quanto ao <b>tratamento do lixo produzido</b>. Os dados do estudo indicaram que, no Brasil, os resíduos sólidos urbanos são compostos basicamente por matéria orgânica (51,4%), plástico (13,5%), papel, papelão e tetrapak (13,1%), metais (2,9%), entre outros.</p>
 <br>
 
 <div class="paragrafo5">
-<p>Algumas leis que abordam o gerenciamento desses resíduos existem, porém poucas são aquelas que incentivam a reciclagem. As principais dificuldades da reciclagem no país estão calcadas na <b>falta de incentivo fiscal e de programas de coleta seletiva.</b></p>
+<p class="texto">Algumas leis que abordam o gerenciamento desses resíduos existem, porém poucas são aquelas que incentivam a reciclagem. As principais dificuldades da reciclagem no país estão calcadas na <b>falta de incentivo fiscal e de programas de coleta seletiva.</b></p>
 </div>
 
 </div>
