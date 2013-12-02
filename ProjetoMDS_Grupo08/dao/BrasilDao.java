@@ -84,7 +84,7 @@ public class BrasilDao extends ConnectionFactory {
 		return datas;
 	}
 
-	public List<Brasil> getDatasComparação(int ano) throws SQLException {
+	public List<Brasil> getDatasComparacao(int ano) throws SQLException {
 		List<Brasil> datas = new ArrayList<Brasil>();
 		if (exception.verificaParamentroAno(ano) == true) {
 			this.conexao = new ConnectionFactory().getConnection();

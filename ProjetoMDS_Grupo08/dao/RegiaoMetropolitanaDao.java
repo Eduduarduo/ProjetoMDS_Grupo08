@@ -82,21 +82,21 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		List<RegiaoMetropolitana> datasRM = new ArrayList<RegiaoMetropolitana>();
 		this.conexao = new ConnectionFactory().getConnection();
 
-		String query = "select ano from dldregiaoabsoluto UNION select ano from dldregiaorelativo";
+		String query = "select distinct ano from dldregiaoabsoluto "
+				+ "UNION select distinct ano from dldregiaorelativo";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		ResultSet rs = stm.executeQuery();
 
 		while (rs.next()) {
-			RegiaoMetropolitana regiao = new RegiaoMetropolitana();
-			regiao.setAno(rs.getInt("ano"));
-			datasRM.add(regiao);
+			RegiaoMetropolitana dataRM = new RegiaoMetropolitana();
+			dataRM.setAno(rs.getInt("ano"));
+			datasRM.add(dataRM);
 		}
 		stm.close();
 		conexao.close();
 		return datasRM;
 	}
 
-	//provavelmente será excluido
 	public List<Integer> getAnosComparacaoRegiaoMetropolitana(int ano)
 			throws SQLException {
 
@@ -128,15 +128,15 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		this.conexao = new ConnectionFactory().getConnection();
 
 		String query = "select distinct regiao from dldregiaoabsoluto "
-				+ "UNION select distinct regiao from dldregiaorelativo";
+				+ "UNION select distinct regiao from dldregiaorelativo order by regiao ";
 
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		ResultSet rs = stm.executeQuery();
 
 		while (rs.next()) {
-			RegiaoMetropolitana regiao = new RegiaoMetropolitana();
-			regiao.setRegiao(rs.getString("regiao"));
-			regioes.add(regiao);
+			RegiaoMetropolitana regiaoRM=new RegiaoMetropolitana();
+			regiaoRM.setRegiao(rs.getString("regiao"));
+			regioes.add(regiaoRM);
 		}
 		stm.close();
 		conexao.close();
@@ -144,14 +144,13 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 
 	}
 
-	//provavelmente será excluido
 	public List<String> getRegioesComparacaoRegiaoMetropolitana(String regiao)
 			throws SQLException {
 
 		List<String> regioes = new ArrayList<String>();
 		this.conexao = new ConnectionFactory().getConnection();
 
-		String query = "select distinct regiao from dldregiaoabsoluto where regiao != ? UNION select distinct regiao from dldregiaorelativo where regiao != ?";
+		String query = "select distinct regiao from dldregiaoabsoluto where regiao != ? ORDER BY regiao UNION select distinct regiao from dldregiaorelativo where regiao != ? ORDER BY regiao";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		stm.setString(1, regiao);
 		stm.setString(2, regiao);

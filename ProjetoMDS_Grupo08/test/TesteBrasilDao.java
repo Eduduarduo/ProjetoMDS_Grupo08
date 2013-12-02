@@ -45,7 +45,6 @@ public class TesteBrasilDao {
 		brasilDao.buscaBrasilAbsoluto(ano);
 		assertNotSame(brasilDao.buscaBrasilAbsoluto(ano), brasil);
 	}
-
 	@Test
 	public void testBuscaBrasilAbsolutoPorAnoTrue() throws SQLException {
 		int ano = 1981;
@@ -53,7 +52,26 @@ public class TesteBrasilDao {
 		brasilDao.buscaBrasilAbsoluto(ano);
 		assertNotSame(brasilDao.buscaBrasilAbsoluto(ano), brasil);
 	}
-
+	@Test
+	public void testeBuscaBrasilAbsoluto() throws SQLException{
+		int ano = 3002;
+		assertNotSame(brasilDao.buscaBrasilAbsoluto(ano), brasil);
+	}
+	@Test
+	public void testeBuscaBrasilRelativo() throws SQLException{
+		int ano = 3002;
+		assertNotSame(brasilDao.buscaBrasilRelativo(ano), brasil);
+	}
+	@Test
+	public void testeGeDatasComparacao() throws SQLException{
+		int ano = 3002;
+		assertNotSame(brasilDao.getDatasComparacao(ano), brasil);
+	}
+	
+	
+	
+	
+	
 	@Test
 	public void testBuscaBrasilAbsolutoPorAno() throws SQLException {
 		int ano = 1981;
@@ -107,24 +125,24 @@ public class TesteBrasilDao {
 	}
 
 	@Test
-	public void testGetDatasComparação() throws SQLException {
+	public void testGetDatasComparacao() throws SQLException {
 		int ano = 1981;
 		when(exceptionBrasil.verificaParamentroAno(ano)).thenReturn(true);
-		assertNotNull(brasilDao.getDatasComparação(ano));
+		assertNotNull(brasilDao.getDatasComparacao(ano));
 	}
 
 	@Test
-	public void testGetDatasComparaçãoDiferente() throws SQLException {
+	public void testGetDatasComparacaooDiferente() throws SQLException {
 		int ano = 1981;
 		when(exceptionBrasil.verificaParamentroAno(ano)).thenReturn(true);
-		assertNotSame(brasilDao.getDatasComparação(ano), brasil);
+		assertNotSame(brasilDao.getDatasComparacao(ano), brasil);
 	}
 
 	@Test
-	public void testGetDatasComparaçãoDiferenteFalse() throws SQLException {
+	public void testGetDatasComparacaooDiferenteFalse() throws SQLException {
 		int ano = 1981;
 		when(exceptionBrasil.verificaParamentroAno(ano)).thenReturn(false);
-		assertNotSame(brasilDao.getDatasComparação(ano).get(1).getAno(),ano);
+		assertNotSame(brasilDao.getDatasComparacao(ano).get(1).getAno(),ano);
 	}
 	@Test
 	public void testBrasilDao() {

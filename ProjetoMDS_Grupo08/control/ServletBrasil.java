@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,16 +12,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import model.Brasil;
-import model.UnidadeFederativa;
 import dao.BrasilDao;
 import exception.ExceptionsBrasil;
 
-@WebServlet(name = "/servletBrasil", urlPatterns = "/buscaBrasil")
+@WebServlet(name = "/ServletBrasil", urlPatterns = "/buscaBrasil")
 public class ServletBrasil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	BrasilDao brasilDao = new BrasilDao();;
+	BrasilDao brasilDao= new BrasilDao();
 	RequestDispatcher rd;
 	HttpServletRequest request;
 	HttpServletResponse response;
@@ -58,24 +60,29 @@ public class ServletBrasil extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		brasilDao = new BrasilDao();
-		int ano = Integer.parseInt(request.getParameter("ano1"));
-		int ano2 = Integer.parseInt(request.getParameter("ano1"));
 
+		request.getParameter("cmd");
+		
+		int ano = Integer.parseInt(request.getParameter("ano1"));
+		int ano2=0;
+		try {
+			ano2 = Integer.parseInt(request.getParameter("ano2"));
+			
+		} catch (Exception e) {
+			System.out.println("n�o tem o ano 2");
+		}
+		
+		
 		ExceptionsBrasil exception = new ExceptionsBrasil();
 		try {
 			switch (request.getParameter("cmd")) {
 			case "busca":
-				buscaBrasilPorAno(ano, brasilDao, request, exception);
-				getAnos(this.brasilDao, request);
-				getAnosComparacao(ano, brasilDao, request);
+				buscaBrasilPorAno(ano, brasilDao, request,response ,exception);
+				
 				rd = request.getRequestDispatcher("brasilBusca.jsp");
 				break;
 			case "Comparacao":
-				buscaBrasilPorAno(ano, brasilDao, request, exception);
-				getAnos(this.brasilDao, request);
-				getAnosComparacao(ano, brasilDao, request);
-				comparacaoPorAno(ano, ano2, brasilDao, request, exception);
+				comparacaoPorAno(ano, ano2, brasilDao, request,response, exception);
 				rd = request.getRequestDispatcher("brasilComparacao.jsp");
 			default:
 				rd = request.getRequestDispatcher("erro.jsp");
@@ -89,28 +96,28 @@ public class ServletBrasil extends HttpServlet {
 	}
 	
 	public void buscaBrasilPorAno(int ano, BrasilDao brasildao,
-			HttpServletRequest request, ExceptionsBrasil exception)
+			HttpServletRequest request,HttpServletResponse response ,ExceptionsBrasil exception)
 			throws ServletException, IOException, SQLException {
 
 		this.brasilDao = brasildao;
 		this.request = request;
 		this.exception = exception;
+		this.response = response;
 
-		if (this.exception.verificaParamentroAno(ano) == true) {
-			if (this.exception.validaGerarGrafico(
-					this.brasilDao.buscaBrasilAbsoluto(ano),
-					this.brasilDao.buscaBrasilRelativo(ano)) == true) {
+		if (exception.verificaParamentroAno(ano) == true) {
 				
 				
-				request.setAttribute("listaBrasilAbsolutoAno1",
-						this.brasilDao.buscaBrasilAbsoluto(ano));
-				request.setAttribute("listaBrasilRelativoAno1",
-						this.brasilDao.buscaBrasilRelativo(ano));
+				System.out.println("estou na busca brasil e vou gerar as listas");
+				List<Brasil> lista1=this.brasilDao.buscaBrasilAbsoluto(ano);
+				
+				List<Brasil> lista2=this.brasilDao.buscaBrasilRelativo(ano);
 			
-				List<Brasil> lista;
+				List<Brasil> lista= new ArrayList<>(lista1.size()+ lista2.size()); 
 				
-				lista.addAll(this.brasilDao.buscaBrasilAbsoluto(ano));
-				lista.addAll(this.brasilDao.buscaBrasilRelativo(ano));
+				lista.addAll(lista1);
+				lista.addAll(lista2);
+				
+				request.setAttribute("listaBrasil",lista);
 				
 				Gson gson = new Gson();
 				String resp = gson.toJson(lista);
@@ -118,53 +125,39 @@ public class ServletBrasil extends HttpServlet {
 				response.getWriter().flush();
 				response.getWriter().close();
 			
-			}
+			}else{
 			rd = request.getRequestDispatcher("erro.jsp");
-		}
-		rd = request.getRequestDispatcher("erro.jsp");
-	}
-
+	}}
+	
+	
+	
 	public void comparacaoPorAno(int ano1, int ano2, BrasilDao brasildao,
-			HttpServletRequest request, ExceptionsBrasil exception)
+			HttpServletRequest request,HttpServletResponse response ,ExceptionsBrasil exception)
 			throws SQLException, ServletException, IOException {
 		this.brasilDao = brasildao;
 		this.request = request;
 		this.exception = exception;
 
-		if (this.exception.verificaCampoDeParametroComparacao(ano1, ano2) == true) {
-			if (this.exception.validaComparacao(
-					this.brasilDao.buscaBrasilAbsoluto(ano1),
-					this.brasilDao.buscaBrasilRelativo(ano1),
-					this.brasilDao.buscaBrasilAbsoluto(ano2),
-					this.brasilDao.buscaBrasilRelativo(ano2)) == true) {
-				request.setAttribute("listaBrasilAbsolutoAno1",
-						this.brasilDao.buscaBrasilAbsoluto(ano1));
-				request.setAttribute("listaBrasilRelativoAno1",
-						this.brasilDao.buscaBrasilRelativo(ano1));
-				request.setAttribute("listaBrasilAbsolutoAno2",
-						this.brasilDao.buscaBrasilAbsoluto(ano2));
-				request.setAttribute("listaBrasilRelativoAno2",
-						this.brasilDao.buscaBrasilRelativo(ano2));
-			
-				List<Brasil> lista;
-				lista.addAll(this.brasilDao.buscaBrasilAbsoluto(ano1));
-				lista.addAll(this.brasilDao.buscaBrasilRelativo(ano1));
-				lista.addAll(this.brasilDao.buscaBrasilAbsoluto(ano2));
-				lista.addAll(this.brasilDao.buscaBrasilRelativo(ano2));
-				
+		if ( exception.verificaParamentroAno(ano1)== true && exception.verificaParamentroAno(ano2) == true){
+					
+				List<Brasil> lista1=this.brasilDao.buscaBrasilAbsoluto(ano1);
+				List<Brasil> lista2=this.brasilDao.buscaBrasilAbsoluto(ano2);
+				List<Brasil> lista= new ArrayList<>(lista1.size()+ lista2.size()); 
+				lista.addAll(lista1);
+				lista.addAll(lista2);
+				request.setAttribute("listaBrasil",lista);
 				Gson gson = new Gson();
 				String resp = gson.toJson(lista);
 				response.getWriter().write(resp);
 				response.getWriter().flush();
 				response.getWriter().close();
 			
-			
-			} else
+			} else{
 				rd = request.getRequestDispatcher("erro.jsp");
-		} else
-			rd = request.getRequestDispatcher("erro.jsp");
 	}
-
+		}
+	
+	
 	public void getAnos(BrasilDao brasildao, HttpServletRequest request)
 			throws ServletException, IOException, SQLException {
 		this.brasilDao = brasildao;
@@ -172,13 +165,18 @@ public class ServletBrasil extends HttpServlet {
 		this.request.setAttribute("listaDatas", this.brasilDao.getDatas());
 	}
 
+
 	public void getAnosComparacao(int ano, BrasilDao brasildao,
 			HttpServletRequest request) throws ServletException, IOException,
 			SQLException {
 		this.brasilDao = brasildao;
 		this.request = request;
-		this.request.setAttribute("listaDatasComparacao",
-				this.brasilDao.getDatasComparação(ano));
-	}
+		
+		
+				this.request.setAttribute("listaDatasComparacao",
+					this.brasilDao.getDatasComparacao(ano));
+		}
+		
+			}
 
-}
+

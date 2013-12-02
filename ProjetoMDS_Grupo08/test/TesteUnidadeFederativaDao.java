@@ -102,7 +102,7 @@ public class TesteUnidadeFederativaDao {
 	}
 	
 	@Test 
-	public void testGetAnosComparacaoUnidadeFederativa() throws SQLException{
+	public void testGetAnosComparacaoUnidadeFederativa1() throws SQLException{
 		doCallRealMethod().when(conexao).getConnection();
 		when(exception.verificaParamentroAnoUF(ano)).thenReturn(true);
 		assertNotNull(ufDao.getAnosComparacaoUnidadeFederativa(ano));
@@ -327,7 +327,7 @@ public class TesteUnidadeFederativaDao {
 	}
 
 	@Test
-	public void testGetAnosComparacaoUnidadeFederativaVerificaAno() throws SQLException {
+	public void testGetAnosComparacaoUnidadeFederativa() throws SQLException {
 		when(exception.verificaParamentroAnoUF(2002)).thenReturn(true);
 		assertNotNull(ufDao.getAnosComparacaoUnidadeFederativa(2002));
 		
@@ -374,5 +374,13 @@ public class TesteUnidadeFederativaDao {
 		ufDao.getUFComparacao("Acre");
 		assertNotNull(ufDao.getUFComparacao("Para"));
 	}
+	
+	
 
+	
+	
+	
+	
+	
+	
 }

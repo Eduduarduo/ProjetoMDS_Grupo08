@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import org.junit.Test;
 import dao.ConnectionFactory;
 
-public class ConnectionFactoryTest {
+public class TestConnectionFactory {
 
 	ConnectionFactory conexao ;
 	@Test

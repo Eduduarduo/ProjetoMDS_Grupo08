@@ -29,16 +29,16 @@ public class UnidadeFederativaDaoTest {
 	
 	@Test
 	public void deveRetornarQuantidadeListaAnos() throws SQLException{
-		assertEquals(9, ufDao.getDatasUnidadeFederativa().size());
-		assertNotNull(ufDao.getDatasUnidadeFederativa());
+		assertEquals(9, ufDao.getAnosUnidadeFederativa().size());
+		assertNotNull(ufDao.getAnosUnidadeFederativa());
 	}
 	
 	@Test
 	public void deveRetornarQuantidadeListaAnosComparacao() throws SQLException{
-		assertEquals(8, ufDao.getDatasComparacaoUnidadeFederativa(2009).size());
-		assertNotNull(ufDao.getDatasComparacaoUnidadeFederativa(2009));
+		assertEquals(8, ufDao.getAnosComparacaoUnidadeFederativa(2009).size());
+		assertNotNull(ufDao.getAnosComparacaoUnidadeFederativa(2009));
 	}
- 
+ 	
 	@Test
 	public void deveRetornarQuantidadeListaUFs() throws SQLException{
 		assertEquals(27, ufDao.getUnidadeFederativa().size());
@@ -47,7 +47,6 @@ public class UnidadeFederativaDaoTest {
 	
 	@Test
 	public void deveRetornarQuantidadeListaUFsComparacao() throws SQLException{
-		assertEquals(26, ufDao.getUFComparacao("Acre").size());
 		assertNotNull(ufDao.getUFComparacao("Acre"));
 	}
 

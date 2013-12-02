@@ -81,12 +81,12 @@ public class UnidadeFederativaDao {
 
 		List<UnidadeFederativa> datasUF = new ArrayList<UnidadeFederativa>();
 		this.conexao = new ConnectionFactory().getConnection();
-		String query = "select  ano from dldufabsoluto UNION select  ano from dldufrelativo";
+		String query = "select distinct ano from dldufabsoluto UNION select  distinct ano from dldufrelativo";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()) {
 			UnidadeFederativa dataUF = new UnidadeFederativa();
-			dataUF.setRegiao(rs.getString("ano"));
+			dataUF.setAno(rs.getInt("ano"));
 			datasUF.add(dataUF);
 		}
 		stm.close();
@@ -98,7 +98,8 @@ public class UnidadeFederativaDao {
 
 		List<UnidadeFederativa> datasUF = new ArrayList<UnidadeFederativa>();
 		this.conexao = new ConnectionFactory().getConnection();
-		String query = "select distinct regiao from dldufabsoluto UNION select distinct regiao from dldufrelativo";
+		String query = "select distinct regiao from dldufabsoluto UNION "
+				+ "select distinct regiao from dldufrelativo order by regiao";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		ResultSet rs = stm.executeQuery();
 		while (rs.next()) {
@@ -111,7 +112,7 @@ public class UnidadeFederativaDao {
 		return datasUF;
 	}
 
-	public List<UnidadeFederativa> getAnosComparaçãoUnidadeFederativa(int ano)
+	public List<UnidadeFederativa> getAnosComparacaoUnidadeFederativa(int ano)
 			throws SQLException {
 		List<UnidadeFederativa> anosUF = new ArrayList<UnidadeFederativa>();
 

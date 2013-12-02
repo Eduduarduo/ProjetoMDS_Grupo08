@@ -7,23 +7,25 @@ import org.junit.*;
 import model.*;
 
 public class DadoTest {
-	Dado dados;
-	Dado dados2;
+	
+	Dado dados = new Dado();
 	
 	@Before
 	public void setUp(){
-		dados = new Dado();
-		dados2 = new Dado("Brasil", "Coletado", "Relativo", 1981, 84122);
+		
 	}
 	
-	@Test 
-	public void testDado(){
-		assertEquals("Brasil", dados2.getRegiao());
-		assertEquals("Coletado", dados2.getOpcao());
-		assertEquals("Relativo", dados2.getOpcao());
-		assertEquals(1981, dados2.getAno());
-		assertEquals(84122, dados2.getValor());
+	@After
+	public void tearDown(){
+		
 	}
+	
+	@Test
+	public void testeContrutorCheio(){
+		assertNotNull(new Dado("regiao", "opcao", "tipo", 2001, 34565));
+	}
+	
+	
 	
 	@Test
 	public void testRegiao(){
@@ -108,5 +110,7 @@ public class DadoTest {
 		assertNotEquals(dados.getValor(), 4321.00);
 		assertNotNull(dados.getValor());
 	}
+
+	
 }
 

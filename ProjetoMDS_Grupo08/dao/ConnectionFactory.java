@@ -12,7 +12,7 @@ public Connection getConnection (){
 		
 		try {
 	
-		return DriverManager.getConnection("jdbc:mysql://localhost/dld3","root","root");
+		return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dld3","root","root");
 		
 		}
 	 

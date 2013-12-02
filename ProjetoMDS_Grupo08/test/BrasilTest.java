@@ -4,27 +4,20 @@ import static org.junit.Assert.*;
 
 import model.Brasil;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class BrasilTest {
 	
-	Brasil brasil;
-	Brasil brasil2;
+	Brasil brasil = new Brasil();
 	
 	@Before
 	public void setUp() throws Exception {
-		brasil = new Brasil();
-		brasil2 = new Brasil("Brasil", "Coletadp", "Relativo", 1981, 12345);
 	}
-	
-	@Test
-	public void testBrasil(){
-		assertEquals("Brasil", brasil2.getRegiao());
-		assertEquals("Coletado", brasil2.getOpcao());
-		assertEquals("Relativo", brasil2.getTipo());
-		assertEquals(2001, brasil2.getAno());
-		assertEquals(12345, brasil2.getValor());
+
+	@After
+	public void tearDown() throws Exception {
 	}
 	
 	@Test

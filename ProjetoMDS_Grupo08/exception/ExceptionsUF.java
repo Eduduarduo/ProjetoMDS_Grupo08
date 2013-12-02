@@ -1,9 +1,7 @@
 package exception;
 
 import java.sql.SQLException;
-import java.util.List;
 
-import model.UnidadeFederativa;
 import dao.UnidadeFederativaDao;
 
 public class ExceptionsUF {
@@ -27,83 +25,11 @@ public class ExceptionsUF {
 	public boolean verificaParamentroUF(String uf) throws SQLException {
 		UFDao = new UnidadeFederativaDao();
 		for (int i = 0; i < UFDao.getUnidadeFederativa().size(); i++) {
-			if ((UFDao.getUnidadeFederativa().get(i).getRegiao().equals(uf)))
+			if ((UFDao.getUnidadeFederativa().get(i).getRegiao().equals(uf))){
 				return true;
+			}	
 		}
 		return false;
 	}
-
-	public boolean verificaComparacaoUFAno(int ano1, int ano2)
-			throws SQLException {
-		if (ano1 != ano2) {
-			return true;
-		}
-		if (verificaParamentroAnoUF(ano1) == false) {
-			return false;
-		}
-		if (verificaParamentroAnoUF(ano2) == false) {
-			return false;
-		}
-		return true;
-	}
-
-	public boolean verificaComparacaoUF(String uf1, String uf2)
-			throws SQLException {
-		if (uf1 != uf2) {
-			return true;
-		}
-		if (verificaParamentroUF(uf1) == false) {
-			return false;
-		}
-		if (verificaParamentroUF(uf2) == false) {
-			return false;
-		}
-		return true;
-	}
-
-	public boolean validaListaUF(List<UnidadeFederativa> listaUF) {
-
-		UnidadeFederativa uf = new UnidadeFederativa();
-		if (listaUF.isEmpty() == true)
-			return false;
-		if (listaUF.equals(uf))
-			return true;
-		return false;
-	}
-
-	public boolean validaListaUFTipoAbsoluto(
-			List<UnidadeFederativa> listaUFAbsoluto) {
-
-		if (validaListaUF(listaUFAbsoluto) == false)
-			return false;
-		if (listaUFAbsoluto.get(1).getTipo() != "Absoluto")
-			return false;
-		return true;
-	}
-
-	public boolean validaListaUFTipoRelativo(
-			List<UnidadeFederativa> listaUFRelativo) {
-
-		if (validaListaUF(listaUFRelativo) == false)
-			return false;
-		if (listaUFRelativo.get(1).getTipo() != "Relativo")
-			return false;
-		return true;
-	}
-
-	public boolean validaGerarGraficoUF(
-			List<UnidadeFederativa> listaUFAbsoluto,
-			List<UnidadeFederativa> listaUFRelativo) {
-
-		if (validaListaUFTipoAbsoluto(listaUFAbsoluto) == false) {
-			return false;
-		}
-		if (validaListaUFTipoRelativo(listaUFRelativo) == false) {
-			return false;
-		}
-		return true;
-	}
-
-	
 
 }
