@@ -6,19 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Destinação do Lixo Domiciliar</title>
-<link rel="stylesheet"  href="CSS/styleMenu.css" type="text/css"/>
-<link rel="stylesheet"  href="CSS/styleMapa.css" type="text/css"/>
 <link rel="stylesheet"  href="CSS/styleConteudo.css" type="text/css"/>
-<link rel="stylesheet" href="CSS/styleCarousel.css"/>
-<link href="CSS/styleSlider.css" rel="stylesheet" type="text/css" />
 <script src="JS/jquery-1.7.min.js" type="text/javascript"></script>
 <script src="JS/jquery.featureCarousel.min.js" type="text/javascript" ></script>
 <script src="JS/caroussel.js" type="text/javascript"></script>
 <script src="JS/slider.js" type="text/javascript"></script>
 </head>
 <body>
-<jsp:include page="quadro.jsp"></jsp:include>
-<jsp:include page="menu.jsp"></jsp:include>
 <div class="conteudo">
 <br>
 <br>
@@ -26,7 +20,9 @@
 <br>
 <br>
 <br>
-<h1>Essa e  a pagina de erro arrumar essa pagina   </h1>
+<div class="imagem">
+<img alt="Imagem de erro" src="images/erro.jpg"/>
+</div>
 </div>
 </body>
 </html>
