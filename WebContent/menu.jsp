@@ -18,14 +18,17 @@
             </li>
             <li><a >Estados</a>
             	<ul>
-                	<li><a href="BuscaUF">Pesquise</a></li>
-                    <li><a href="">Compare</a></li>
+                	<li><a href="buscaUf?pg=simples">Pesquise</a></li>
+                    <li><a href="buscaUf?pg=ano">Compare Ano</a></li>
+                    <li><a href="buscaUf?pg=uf">Compare estados</a></li>
             	</ul>
             </li>
             <li><a href="">Regiões Metropolitanas</a>
             	<ul>
-                	<li><a href="regiaoOpcao.html">Pesquise</a></li>
-                    <li><a href="">Compare</a></li>
+                	<li><a href="buscaRegiao?pg=simples">Pesquise</a></li>
+                	<li><a href="buscaRegiao?pg=ano">Compare Ano</a></li>
+                	<li><a href="buscaRegiao?pg=regiao">Compare Regiao</a></li>
+                    
 
            	</ul>
             </li>

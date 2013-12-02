@@ -11,7 +11,7 @@
 <div id="carousel">
     
             <div class="carousel-feature">
-          <a href="#"><img class="carousel-image" alt="Image Caption" src="images/minas.jpeg"></a>
+          <a href="#"><img class="carousel-image" alt="Image Caption" src="images/pie.jpeg"></a>
           <div class="carousel-caption">
             <p>
              sfhsovoishoishgiosh

@@ -1,10 +1,19 @@
 @charset "utf-8";
 /* CSS Document */
 .conteudo {
-	text-align:right;
-	height:600px;
+	height:700px;
 	width:1000px;
 	margin: 0 auto;
 	background:#FFF;
-	
 	}
+	
+.texto
+{
+ float: right;
+text-align: right;
+
+	
+}	
+.boxTagClouds{
+	float: left;
+}

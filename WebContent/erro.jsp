@@ -28,7 +28,6 @@
 <br>
 <h1>Essa e  a pagina de erro arrumar essa pagina   </h1>
 </div>
-<jsp:include page="carrousel.jsp"></jsp:include>
 </body>
 </html>
 

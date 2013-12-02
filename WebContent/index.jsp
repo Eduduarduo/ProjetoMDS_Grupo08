@@ -22,6 +22,5 @@
 <div class="conteudo">
 <jsp:include page="mapa.jsp"></jsp:include>
 </div>
-<jsp:include page="carrousel.jsp"></jsp:include>
 </body>
 </html>

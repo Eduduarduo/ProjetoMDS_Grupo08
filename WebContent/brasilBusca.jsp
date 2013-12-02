@@ -11,48 +11,115 @@
 <link rel="stylesheet"  href="CSS/styleConteudo.css" type="text/css"/>
 <link rel="stylesheet" href="CSS/styleCarousel.css"/>
 <link href="CSS/styleSlider.css" rel="stylesheet" type="text/css" />
-<script src="JS/jquery-1.7.min.js" type="text/javascript"></script>
 <script src="JS/jquery.featureCarousel.min.js" type="text/javascript" ></script>
 <script src="JS/caroussel.js" type="text/javascript"></script>
 <script src="JS/slider.js" type="text/javascript"></script>
+
+
+<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			serie = {
+				dataM : [],
+
+			}
+
+			generateChart(serie);
+			generateChart2(serie);
+
+		});
+	</script>
+
+
+
+
+		<script type="text/javascript">
+		function changeSerie(f) {
+				
+			$.ajax({
+				url : f.action,
+				type : 'POST',
+				dataType : 'json',
+				data : {
+					ano1 : $('#ano1').val(),
+				},
+				success : function(dados) {
+					console.debug(dados);
+					serie.dataM = [];
+					serie.dataM2 = [];
+					serie.dataG = [];
+					serie.dataG2 = [];
+					serie.size=dados.length;
+					for (var i = 0; i < dados.length; i++) {
+						if (dados[i].tipo == "Relativo") {
+							console.debug(dados[i]);
+							serie.dataG.push(dados[i].valor);
+							serie.dataG2.push(dados[i].opcao);
+						} else {
+							console.debug(dados[i]);
+							serie.year = dados[i].ano;
+							serie.dataM.push(dados[i].valor);
+							serie.dataM2.push(dados[i].opcao);
+						}
+	
+					}
+	
+					generateChart(serie);
+					generateChart2(serie);
+				}
+			});
+		}
+	</script>
+	
+	<script type="text/javascript" src="JS/plotarGraficoDePizza.js"></script>
+
+	<script type="text/javascript" src="JS/plotarGraficoDeBarras.js"></script>	
+		
 </head>
 <body>
-<jsp:include page="quadro.jsp"></jsp:include>
-<jsp:include page="menu.jsp"></jsp:include>
+	<jsp:include page="quadro.jsp"></jsp:include>
+	<jsp:include page="menu.jsp"></jsp:include>
+	
+	<br>
+	<br>
 
 <div class="conteudo">
-<form action="buscaBrasil?cmd=busca" method="post"> 
-<br><br><br>
-<select name="ano1">
-<c:forEach var ="list" items="${listaDatas}" >
-<option value="${list.ano}">${list.ano}</option>
-</c:forEach>
-</select>
-<br>
-<br><br>
-<input  type="submit"  value="Pesquiser"  /> 
-   </form>
-<br>
-<c:forEach var ="b"  items="${listaBrasilAbsolutoAno1}" >
-REGIÃO  :  ${b.regiao}  ;
-VALOR   :  ${b.valor}  ;
-OPÇÃO   :  ${b.opcao} ;
-ANO   :   ${b.ano}  ;
-<br>		
-	
-</c:forEach>
-<br>
+		<br>
+		<br>
+		<p>Selecione o Ano </p>
+		<div style="font-weight: bold; margin: 5px auto;">
+			<form action="buscaBrasil?cmd=busca" method="post" id="form" name="form"> 
+				Ano:
+				<select name="ano1" id="ano1">
+					<c:forEach var ="list" items="${listaDatas}" >
+						<option value="${list.ano}">${list.ano}</option>
+					</c:forEach>
+				</select>
+				<input type="button" onclick="changeSerie(this.form);" value="Pesquisar" />
+   			</form>
+		
+		</div>
+		<br>
+		
+		<div class="boxTagClouds" id="boxTagClouds">
+					<div id="containerDLD"
+						style="width: 480px; height: 420px; margin: 0 auto"></div>
+				</div>
 
-<c:forEach var ="b"  items="${listaBrasilRelativoAno1}" >
-REGIÃO  :  ${b.regiao}  ;
-VALOR   :  ${b.valor}  ;
-OPÇÃO   :  ${b.opcao} ;
-ANO   :   ${b.ano}  ;
-<br>
-</c:forEach>
-<br>
+				<div class="boxTagClouds" id="boxTagClouds">
 
-</div>
-<jsp:include page="carrousel.jsp"></jsp:include>
+					<div id="containerDLD2"
+						style="width: 480px; height: 420px; margin: 0 auto"></div>
+				</div>
+			
+	<script src="JS/highcharts.js"></script>
+
+	<script src="JS/modules/exporting.js"></script>
+		
+</div> 
+				
 </body>
 </html>

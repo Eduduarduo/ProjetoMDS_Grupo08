@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"  href="CSS/styleConteudo.css" type="text/css"/>
 <style type="text/css">
 	.active { display:inherit; }
 	ul#map {display: block; margin: 0; padding: 0; width: 296px; height: 294px; background-image: url('images/img/mapa.jpg');}
@@ -105,13 +106,7 @@
 </style>
 
 </head>
-
-
-
-
 <body>
-
-
 <div id="mapa">
     <ul id="map">
         <li id="crs" estado="rs"><a href="#rs" id="rs" title="RS"><img src="images/img/null.gif" alt="RS" /></a></li>
@@ -143,7 +138,23 @@
         <li id="cpi" estado="pi"><a href="#pi" id="pi" title="PI"><img src="images/img/null.gif" alt="PI" /></a></li>
     </ul>
     </div>
-    
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<div  class="texto">
+ <h4>Este site tem como objetivo trazer informações sobre a destinação<br> 
+ do lixo brasileiro ao decorrer dos anos, encontramos as divisões sobre<br>
+ a destinação de estados e regiões metropolitanas.
+ </h4> 
+
+
+
+</div>
+
+
+   
 
 
 
