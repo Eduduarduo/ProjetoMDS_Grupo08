@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+.conteudo {
+	
+	text-align:justify;
+	height:600px;
+	width:1000px;
+	margin: 0 auto;
+	background:#FFF;	
+}
+
+div.imagem1{
+		float: left;
+		
+}
+
+h1{
+	text-align: center;
+	color:#009900;
+}
+
+p{
+	text-indent: 3em;
+	font-size: large;
+	font-family: inherit;
+	line-height: 180%;
+}
+
+div.paragrafo1{
+	text-align: center;
+}
+
+div.imagem2{
+		float:right;	
+}
+
+div.paragrafo2{
+	text-align: center;
+}
+
+div.imagem3{
+		float:left;	
+}
+
+div.paragrafo5{
+	text-align: center;
+}
+
+
