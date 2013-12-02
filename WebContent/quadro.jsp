@@ -21,22 +21,22 @@
         <div id="thumbs">
             <div class="thumb">
                 <div class="frame"><img src="images/thumb1.jpg" /></div>
-                <div class="thumb-content"><p>Coleta Seletiva</p>Veja como pequenas açoes podem ajudar</div>
+                <div class="thumb-content"><p>Coleta Seletiva</p>Por que no Brasil não existe coleta Seletiva?</div>
                 <div style="clear:both;"></div>
             </div>
             <div class="thumb">
                 <div class="frame"><img src="images/thumb2.jpg" /></div>
-                <div class="thumb-content"><p>Descarte</p>Qual a importância do descarte correto?</div>
+                <div class="thumb-content"><p>Descarte Correto</p>Onde posso descartar meu lixo eletrônico?</div>
                 <div style="clear:both;"></div>
             </div>
             <div class="thumb">
                 <div class="frame"><img src="images/thumb3.jpg" /></div>
-                <div class="thumb-content"><p>Empresas Verdes</p>Iniciativas que dão lucro com lixo </div>
+                <div class="thumb-content"><p>Empresas Verdes</p>Existem Empresas Verdes? </div>
                 <div style="clear:both;"></div>
             </div>
             <div class="thumb">
                 <div class="frame"><img src="images/thumb4.jpg" /></div>
-                <div class="thumb-content"><p>Pensamento Verde</p>Lorem ipson</div>
+                <div class="thumb-content"><p>Pensamento Verde</p>Por que a coleta seletiva deve ser implementada?</div>
                 <div style="clear:both;"></div>
             </div>
         </div>
