@@ -43,25 +43,30 @@ public class ExceptionRegiaoMetropolitana {
 	public boolean verificaCampoDeParametro(String regiao, int ano, int ano2)
 			throws SQLException {
 
-		boolean validacao = true;
-
-		if (ano == 0 || regiao == null || ano2 == 0) {
-			validacao = false;
-		}
-
-		return validacao;
+		if(ano == ano2)
+			return false;
+		if(verificaCampoDeParametro(ano) == false)
+			return false;
+		if(verificaCampoDeParametro(ano2) == false)
+			return false;
+		if(verificaCampoDeParametro(regiao) == false)
+			return false;
+		
+		return true;
 	}
 
 	public boolean verificaCampoDeParametro(String regiao, String regiao2,
 			int ano) throws SQLException {
-
-		boolean validacao = true;
-
-		if (ano == 0 || regiao == null || regiao2 == null) {
-			validacao = false;
-		}
-
-		return validacao;
+		if(regiao == regiao2)
+			return false;
+		if(verificaCampoDeParametro(ano) == false)
+			return false;
+		if(verificaCampoDeParametro(regiao2) == false)
+			return false;
+		if(verificaCampoDeParametro(regiao) == false)
+			return false;
+		
+		return true;
 	}
 
 	public boolean validaListBox(List<RegiaoMetropolitana> listaRegiao) {
@@ -72,46 +77,15 @@ public class ExceptionRegiaoMetropolitana {
 		return true;
 	}
 
-	public boolean validaListBoxAbsoluto(List<RegiaoMetropolitana> listaRegiao) {
-		if (validaListBox(listaRegiao) == false){
-			return false;}
-		if (listaRegiao.get(1).getTipo() != "Absoluto"){
-			return false;}
-		return true;
-	}
-
-	public boolean validaListBoxRelativo(List<RegiaoMetropolitana> listaRegiao) {
-		
-		if (validaListBox(listaRegiao) == false)
-			return false;
-		if (listaRegiao.get(1).getTipo() != "Relativo")
-			return false;
-		return true;
-	}
-
 	//usado no metodo Busca
-	public boolean validaGerarGraficoBusca(List<RegiaoMetropolitana> listaRegiaoAbsoluto,
+	public boolean validaGerarGrafico(List<RegiaoMetropolitana> listaRegiaoAbsoluto,
 			List<RegiaoMetropolitana> listaRegiaoRelativo) {
-		if (validaListBoxAbsoluto(listaRegiaoAbsoluto) == false){
+		if (validaListBox(listaRegiaoAbsoluto) == false){
 			return false;}
-		if(validaListBoxRelativo(listaRegiaoRelativo) == false) {
+		if(validaListBox(listaRegiaoRelativo) == false) {
 			return false;
 		}
 		return true;
 	}
-	
-	//usado no metodo comparacao
-	public boolean validaGerarGraficoComparacao(List<RegiaoMetropolitana> listaRegiaoAbsoluto,
-			List<RegiaoMetropolitana> listaRegiaoAbsoluto2) {
 		
-		
-
-		if (validaListBoxAbsoluto(listaRegiaoAbsoluto) == false){
-			return false;
-		}
-		if(validaListBoxAbsoluto(listaRegiaoAbsoluto2) == false){
-			return false;
-		}
-		return true;
-	}	
 }

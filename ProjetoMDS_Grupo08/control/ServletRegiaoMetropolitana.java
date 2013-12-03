@@ -118,7 +118,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 			}
 		}catch(Exception e){
 			rd = request.getRequestDispatcher("erro.jsp");
-			rd.forward(request, response);
+			//rd.forward(request, response);
 		}
 	}
 
@@ -130,7 +130,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 		this.exceptions = new ExceptionRegiaoMetropolitana();
 		
 		//exception
-		boolean validacaoLista = this.exceptions.validaGerarGraficoBusca(this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao, ano),
+		boolean validacaoLista = this.exceptions.validaGerarGrafico(this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao, ano),
 						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaRelativo(regiao, ano));
 			
 		if(this.exceptions.verificaCampoDeParametro(regiao, ano) == true && validacaoLista == true){
@@ -155,7 +155,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 			response.getWriter().close();	
 		}else{
 			rd = request.getRequestDispatcher("erro.jsp");
-			rd.forward(request, response);
+			//rd.forward(request, response);
 		}
 		
 	}
@@ -170,7 +170,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 			this.response= response;
 			this.exceptions = new ExceptionRegiaoMetropolitana();
 			
-			boolean validacaoList = this.exceptions.validaGerarGraficoComparacao(
+			boolean validacaoList = this.exceptions.validaGerarGrafico(
 						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao, ano1),
 						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao, ano2));
 	
@@ -212,7 +212,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 			this.response= response;
 			this.exceptions = new ExceptionRegiaoMetropolitana();
 			
-			boolean validacaoList = this.exceptions.validaGerarGraficoComparacao(
+			boolean validacaoList = this.exceptions.validaGerarGrafico(
 						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao1, ano1),
 						this.regiaoMetropolitanaDao.buscaRegiaoMetropolitanaAbsoluto(regiao2, ano1));
 				
@@ -239,7 +239,7 @@ public class ServletRegiaoMetropolitana extends HttpServlet {
 				
 			}else{
 				rd = request.getRequestDispatcher("erro.jsp");
-				rd.forward(request, response);
+				//rd.forward(request, response);
 				
 			}
 	}

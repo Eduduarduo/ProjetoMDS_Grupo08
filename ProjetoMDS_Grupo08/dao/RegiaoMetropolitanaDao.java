@@ -150,7 +150,7 @@ public class RegiaoMetropolitanaDao extends ConnectionFactory {
 		List<String> regioes = new ArrayList<String>();
 		this.conexao = new ConnectionFactory().getConnection();
 
-		String query = "select distinct regiao from dldregiaoabsoluto where regiao != ? ORDER BY regiao UNION select distinct regiao from dldregiaorelativo where regiao != ? ORDER BY regiao";
+		String query = "select distinct regiao from dldregiaoabsoluto where regiao != ?  UNION select distinct regiao from dldregiaorelativo where regiao != ? order by regiao";
 		java.sql.PreparedStatement stm = this.conexao.prepareStatement(query);
 		stm.setString(1, regiao);
 		stm.setString(2, regiao);
