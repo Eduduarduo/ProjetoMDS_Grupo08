@@ -52,11 +52,15 @@ public class RegiaoMetropolitanaDaoTest {
 		assertNotNull(regiaoDao.getRegioesRegiaoMetropolitana());
 	}
 	
+	@Test
+	public void deveRetornarQuantidadeListaRegioesComparacao() throws SQLException{
+		assertEquals(9, regiaoDao.getRegioesComparacaoRegiaoMetropolitana("Belem - PA").size());
+		assertNotNull(regiaoDao.getRegioesComparacaoRegiaoMetropolitana("Belem - PA"));
+	}
 
 	
 	@Test
 	public void testeException() throws SQLException{
-		//expect(this.exception.verificaCampoDeParametro("Belem - PA", 2001)).andReturn(true);
 		assertTrue(this.exception.verificaCampoDeParametro("Belem - PA", 2001));
 	}
 	
