@@ -145,12 +145,12 @@ public class ServletBrasil extends HttpServlet {
 				List<Brasil> lista= new ArrayList<>(lista1.size()+ lista2.size()); 
 				lista.addAll(lista1);
 				lista.addAll(lista2);
-				//request.setAttribute("listaBrasil",lista);
-				//Gson gson = new Gson();
-				//String resp = gson.toJson(lista);
-				//response.getWriter().write(resp);
-				 //response.getWriter().flush();
-				//response.getWriter().close();
+				request.setAttribute("listaBrasil",lista);
+				Gson gson = new Gson();
+				String resp = gson.toJson(lista);
+				response.getWriter().write(resp);
+				response.getWriter().flush();
+				response.getWriter().close();
 			
 			} else{
 				rd = request.getRequestDispatcher("erro.jsp");
