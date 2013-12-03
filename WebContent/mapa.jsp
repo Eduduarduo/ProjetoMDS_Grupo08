@@ -141,16 +141,17 @@
 <br>
 <br>
 <br><br>
-<br>
-<br>
 <div  class="texto">
- <h4>Este site tem como objetivo trazer informações sobre a destinação<br> 
- do lixo brasileiro ao decorrer dos anos, encontramos as divisões sobre<br>
- a destinação de estados e regiões metropolitanas.
- </h4> 
-
-
-
+<h2>Você sabe aonde seu lixo vai parar?</h2>
+<br>
+<h2>E o lixo produzido pelo seu estado?</h2>
+<h3>
+<br><br>
+E o lixo produzido pelo seu estado?<br>
+Os dados absolutos e relativos do descarte de lixo no Brasil dos últimos<br> 20 anos estão 
+disponibiliza-los livremente pelo IBGE. Para ajudá-lo a melhor entender<br> esses dados,
+este site permite que vc pesquise e melhor visualize a a destinação<br> do lixo domiciliar brasileiro.<br>
+</h3> 
 </div>
 
 

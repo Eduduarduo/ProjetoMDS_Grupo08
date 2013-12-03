@@ -82,7 +82,7 @@ public class ServletBrasil extends HttpServlet {
 				rd = request.getRequestDispatcher("brasilBusca.jsp");
 				break;
 			case "Comparacao":
-				comparacaoPorAno(ano, ano2, brasilDao, request,response, exception);
+				comparacaoPorAno(ano, ano2, brasilDao, request,response);
 				rd = request.getRequestDispatcher("brasilComparacao.jsp");
 			default:
 				rd = request.getRequestDispatcher("erro.jsp");
@@ -132,11 +132,11 @@ public class ServletBrasil extends HttpServlet {
 	
 	
 	public void comparacaoPorAno(int ano1, int ano2, BrasilDao brasildao,
-			HttpServletRequest request,HttpServletResponse response ,ExceptionsBrasil exception)
+			HttpServletRequest request,HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 		this.brasilDao = brasildao;
 		this.request = request;
-		this.exception = exception;
+		this.exception = new ExceptionsBrasil();
 
 		if ( exception.verificaParamentroAno(ano1)== true && exception.verificaParamentroAno(ano2) == true){
 					
@@ -145,12 +145,12 @@ public class ServletBrasil extends HttpServlet {
 				List<Brasil> lista= new ArrayList<>(lista1.size()+ lista2.size()); 
 				lista.addAll(lista1);
 				lista.addAll(lista2);
-				request.setAttribute("listaBrasil",lista);
-				Gson gson = new Gson();
-				String resp = gson.toJson(lista);
-				response.getWriter().write(resp);
-				response.getWriter().flush();
-				response.getWriter().close();
+				//request.setAttribute("listaBrasil",lista);
+				//Gson gson = new Gson();
+				//String resp = gson.toJson(lista);
+				//response.getWriter().write(resp);
+				 //response.getWriter().flush();
+				//response.getWriter().close();
 			
 			} else{
 				rd = request.getRequestDispatcher("erro.jsp");

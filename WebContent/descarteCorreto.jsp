@@ -40,7 +40,7 @@
 <br>
 
 <div class="paragrafo1">
-<p class="texto">Um dos itens muitas vezes presente nos lixos domiciliares é o chamado <b>lixo eletrônico</b>. Lixo Eletrônico é todo resíduo material produzido pelo descarte de equipamentos eletrônicos. Com o elevado uso de equipamentos eletrônicos no mundo moderno, este tipo de lixo tem se tornado um grande <b>problema ambiental</b> quando não descartado em locais adequados.</p>
+<p>Um dos itens muitas vezes presente nos lixos domiciliares é o chamado <b>lixo eletrônico</b>. Lixo Eletrônico é todo resíduo material produzido pelo descarte de equipamentos eletrônicos. Com o elevado uso de equipamentos eletrônicos no mundo moderno, este tipo de lixo tem se tornado um grande <b>problema ambiental</b> quando não descartado em locais adequados.</p>
 </div>
 
 <div class="imagem2">
@@ -49,19 +49,19 @@
 
 <br>
 <div class="paragrafo2">
-<p class="texto">Para não provocar a contaminação e poluição do meio ambiente, o correto é fazer o <b>descarte de lixo eletrônico em locais apropriados</b> como, por exemplo, empresas e cooperativas que atuam na área de reciclagem.</p>
+<p>Para não provocar a contaminação e poluição do meio ambiente, o correto é fazer o <b>descarte de lixo eletrônico em locais apropriados</b> como, por exemplo, empresas e cooperativas que atuam na área de reciclagem.</p>
 </div>
 <br>
-<p class="texto"><b>Celulares e suas baterias</b> podem ser entregues nas empresas de telefonia celular. Elas encaminham estes resíduos de forma a não provocar danos ao meio ambiente. </p>
+<p><b>Celulares e suas baterias</b> podem ser entregues nas empresas de telefonia celular. Elas encaminham estes resíduos de forma a não provocar danos ao meio ambiente. </p>
 
 <br>
-<p class="texto">O <b>Instituto Brasileiro de Defesa do Consumidor (IDEC)</b> lista as principais empresas de informática e celulares, e onde os aparelhos das marcas determinadas podem ser descartados.  A <b>ONG Lixo Eletrônico</b> também dá aos usuários uma lista de locais onde pode ser feita a doação de artigos para a reciclagem dos resíduos eletrônicos.</p>
+<p>O <b>Instituto Brasileiro de Defesa do Consumidor (IDEC)</b> lista as principais empresas de informática e celulares, e onde os aparelhos das marcas determinadas podem ser descartados.  A <b>ONG Lixo Eletrônico</b> também dá aos usuários uma lista de locais onde pode ser feita a doação de artigos para a reciclagem dos resíduos eletrônicos.</p>
 <br>
 <div class="imagem3">
 <img alt="Imagem reciclagem" src="images/reciclagem-digital.jpg"/>
 </div>
 <div class="paragrafo5">
-<p class="texto">Outra opção é doar equipamentos em boas condições, mas que não estão mais em uso, para entidades sociais que atuam na área de inclusão digital. Além de não contaminar o meio ambiente, o ato ajudará pessoas que precisam. Para doar seu computador para que ele faça parte de programas de inclusão digital, você pode procurar a CDI. Para isso é necessário que o seu PC tenha alguns requisitos básicos, para que possa ser reutilizado por crianças e comunidades carentes.</p>
+<p>Outra opção é doar equipamentos em boas condições, mas que não estão mais em uso, para entidades sociais que atuam na área de inclusão digital. Além de não contaminar o meio ambiente, o ato ajudará pessoas que precisam. Para doar seu computador para que ele faça parte de programas de inclusão digital, você pode procurar a CDI. Para isso é necessário que o seu PC tenha alguns requisitos básicos, para que possa ser reutilizado por crianças e comunidades carentes.</p>
 </div>
 
 </div>

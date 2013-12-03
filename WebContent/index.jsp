@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="CSS/styleCarousel.css"/>
 <link href="CSS/styleSlider.css" rel="stylesheet" type="text/css" />
 <script src="JS/jquery-1.7.min.js" type="text/javascript"></script>
-<script src="JS/jquery.featureCarousel.min.js" type="text/javascript" ></script>
+<script src="JS/jquery.featureCarousel.min.j
+s" type="text/javascript" ></script>
 <script src="JS/caroussel.js" type="text/javascript"></script>
 <script src="JS/slider.js" type="text/javascript"></script>
 </head>

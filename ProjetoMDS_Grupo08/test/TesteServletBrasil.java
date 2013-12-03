@@ -39,11 +39,7 @@ public class TesteServletBrasil {
 		ano2 = 2004;
 		anofalse = 2030;
 	}
-	
-	
-	
-
-	@Test 
+		@Test 
 	public void TesteConstrutor(){
 		assertNotNull(new ServletBrasil());
 	}
@@ -68,24 +64,25 @@ public class TesteServletBrasil {
 	
 	@Test
 	public void testComparacaoPorAno() throws ServletException, IOException, SQLException{
-		servletBrasil.comparacaoPorAno(ano1, ano2, brasildao, request, response, exception);
+	
+		servletBrasil.comparacaoPorAno(ano1, ano2, brasildao, request, response);
 	}
 	@Test
 	public void testComparacaoPorAno2False() throws ServletException, IOException, SQLException{
 		
-		servletBrasil.comparacaoPorAno(ano1,anofalse, brasildao, request, response, exception);
+		servletBrasil.comparacaoPorAno(ano1,anofalse, brasildao, request, response);
 		
 	}
 	@Test
 	public void testComparacaoPorAno1False() throws ServletException, IOException, SQLException{
 		
-		servletBrasil.comparacaoPorAno(anofalse,ano2, brasildao, request, response, exception);
+		servletBrasil.comparacaoPorAno(anofalse,ano2, brasildao, request, response);
 		
 	}
 	@Test
 	public void testComparacaoPorAmbosFalse() throws ServletException, IOException, SQLException{
 		
-		servletBrasil.comparacaoPorAno(anofalse,anofalse, brasildao, request, response, exception);
+		servletBrasil.comparacaoPorAno(anofalse,anofalse, brasildao, request, response);
 		
 	}
 	@Test

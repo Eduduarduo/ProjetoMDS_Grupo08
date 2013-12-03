@@ -84,7 +84,7 @@ public class ServletUnidadeFederativa extends HttpServlet {
 				uf = request.getParameter("uf");
 
 				buscaUnidadeFederativa(ano, uf, unidadeFederativaDao,
-						exception, request, response);
+						request, response);
 				rd = request.getRequestDispatcher("ufBusca.jsp");
 				rd.forward(request, response);
 				break;
@@ -105,7 +105,7 @@ public class ServletUnidadeFederativa extends HttpServlet {
 				uf1 = request.getParameter("uf1");
 				uf2 = request.getParameter("uf2");
 
-				ComparacaoPorUF(ano, uf1, uf2, unidadeFederativaDao, request,
+				ComparacaoPorUF(ano, uf1, uf2, request,
 						response);
 				rd = request.getRequestDispatcher("ufComparacaoUf.jsp");
 				rd.forward(request, response);
@@ -121,13 +121,14 @@ public class ServletUnidadeFederativa extends HttpServlet {
 	}
 
 	public void buscaUnidadeFederativa(int ano, String uf,
-			UnidadeFederativaDao unidadeFederativaDao, ExceptionsUF exception,
+			UnidadeFederativaDao unidadeFederativaDao,
 			HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
 		this.unidadeFederativaDao = unidadeFederativaDao;
 		this.request = request;
 		this.response = response;
+		exception =new ExceptionsUF();
 
 		if (exception.verificaParamentroUF(uf) == true) {
 			if (exception.verificaParamentroAnoUF(ano) == true) {
@@ -214,11 +215,10 @@ public class ServletUnidadeFederativa extends HttpServlet {
 	}
 
 	public void ComparacaoPorUF(int ano, String uf1, String uf2,
-			UnidadeFederativaDao unidadeFederativaDao,
 			HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
 
-		this.unidadeFederativaDao = unidadeFederativaDao;
+		this.unidadeFederativaDao =  new UnidadeFederativaDao();
 		this.request = request;
 		this.response = response;
 
