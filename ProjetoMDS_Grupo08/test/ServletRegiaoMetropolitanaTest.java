@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.junit.Before;
 import org.junit.Test;
 
-import control.ServletBrasil;
 import control.ServletRegiaoMetropolitana;
 
 
@@ -30,30 +29,20 @@ public class ServletRegiaoMetropolitanaTest{
 		regiao = "Belem - PA";
 		ano = 2001;
 	}
-	//@Test
+	@Test
 	public void testConstrutor(){
 		assertNotNull(new ServletRegiaoMetropolitana());
 	}
 	
-	//@Test //não entra por causa do response
-	public void testBuscaRegiaoMetropolitana() throws ServletException, IOException, SQLException{
-		servlet.buscaRegiaoMetropolitana(regiao, ano, request, response);
-	} 
 	
-	
-	//@Test //não entra por causa do response
-	public void testComparacaoRegiaoMetropolitanaPorAno() throws ServletException, IOException, SQLException{
-		int ano2 = 2002;
-		servlet.ComparacaoRegiaoMetropolitanaPorAno(regiao, ano, ano2, request, response);
-	}
-	//@Test // tbm não funciona por causa do foward()
+	@Test
 	public void testComparacaoRegiaoMetropolitanaPorAnoFalso() throws ServletException, IOException, SQLException{
 		int ano2 = 3000;
 		servlet.ComparacaoRegiaoMetropolitanaPorAno(regiao, ano, ano2, request, response);
 	}
 	
-	//@Test// tbm não funciona por causa do response
-	public void testComparacaoRegiaoMetropolitanaPorRegiao() throws ServletException, IOException, SQLException{
+	@Test
+	public void testComparacaoRegiaoMetropolitanaPorRegiaoFalso() throws ServletException, IOException, SQLException{
 		String regiao2 = "Fortaleza";
 		servlet.ComparacaoRegiaoMetropolitanaPorRegiao(regiao, ano, regiao2, request, response);
 	}
